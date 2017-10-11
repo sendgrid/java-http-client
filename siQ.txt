@@ -1,0 +1,114 @@
+Which of the following books have you read? What Else? *
+Release It!: Design and Deploy Production-Ready Software
+The Practice of Cloud System Administration: DevOps and SRE Practices for Web Services
+The Art of Monitoring
+The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations
+The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win
+Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation
+Continuous Integration: Improving Software Quality and Reducing Risk
+The Goal: A Process of Ongoing Improvement
+Instant OSSEC Host-based Intrusion Detection
+Site Reliability Engineering: How Google Runs Production Systems
+Production-Ready Microservices: Building Standardized Systems Across an Engineering Organization
+Building Microservices: Designing Fine-Grained Systems
+AWS Lambda: A Guide to Serverless Microservices
+AWS Scripted: How to Automate the Deployment of Secure and Resilient Websites with Amazon Web Services VPC, ELB, EC2,RDS, IAM, SES and SNS
+AWS Scripted 2: Essential Security, SSH and MFA
+Threat Modeling: Designing for Security
+Crafting the InfoSec Playbook: Security Monitoring and Incident Response Master Plan
+Ansible for DevOps: Server and configuration management for humans
+Event Streams in Action, Unified log processing with Kafka and Kinesis
+Other:
+
+AWS Certified Solutions Architect - Associate
+Which of these conferences/resources do you attend/track? What else? *
+Awesome Site Reliability Engineering
+SREcon Conferences
+Monitorama
+DevOpsTV
+Linux Performance
+Kafka Summit
+Site Reliability Engineer HandBook
+Other:
+
+This is a required question
+Which of these groups do you regularly track? What else? *
+Consul
+Terraform
+Nomad
+Docker Forums
+Ansible
+Rundeck
+Marathon
+Elastic
+Grafana
+Prometheus
+Beats
+Vault
+Simian Army
+Riemann
+Other:
+
+What are three most recent SRE/DevOps related technologies/tools that you learned in the last 12months? *
+
+Jenkins,AWS OpsWork, CloudFoundry, Ansible
+SYSTEMS ARCHITECTURE
+What are three dimensions/techniques that can be used for application scalability? Give concrete examples of how you have utilised these techniques. *
+
+Horizontal Scaling, Vertical Scaling and Failover Scaling. We deployed an application in production which was stateless and some state information was stored in in-memory cache (Redis). Applications should be designed in such a way so that they are as stateless as possible. We used a cluster of spot instances to serve heavy traffic on top of elastic load balancer to reduce costs and increase the availability.
+What service-discovery mechanisms are available for micro services architectures? Which have you personally worked with? What went well? What did not? *
+
+Netflix Eureka, etcd, Apache Zookeeper. I have not worked with service-discovery architectures.
+What distributed datastores have you provisioned and managed? What was the load and quantity of data? *
+
+I have provisioned and managed MongoDb and SQL instances. I have implemented sharding and replication on a mongoDB cluster deployment for data availability . It was a ready intensive database application with around 5-8 I/O per second.
+What mechanisms have you used to implement API load balancing, rate throttling, timeouts, and security for microservices? How effective was it? What would you use now for a green field implementation? Why? *
+
+Horizontal Scaling, AWS API Gateway, custom API gateway, Oauth, Security Token Service with expiry timeout, Sliding Windows, ALB,
+How does system spare capacity relate to high-availability? How have you allocated spare capacity in systems you have managed? *
+
+More memory more connections , equal memory allocation and ebs volumes
+What techniques/designs have you used to implement system failure domains? How can those techniques help with application upgrades as well? *
+
+Route 53 Failover primary and secondary domains
+MONITORING
+What monitoring technologies are available for capturing and analyzing application metrics? Which have you used personally? Why that one and not others? *
+
+Dynatrace,Nagios, ElasticSearch
+What are some of the challenges in monitoring microservices? How have you specifically addressed these? *
+Your answer
+
+What are some fundamental differences between a monitoring system like Nagios andPrometheus? How would you compare Nagios vs Sensu? Prometheus vs ElasticBeats vs statsd/collectd? *
+Your answer
+
+What are the key application metrics to monitor for REST API services? How have you personally implemented this? What actions have you taken based on the measured values? *
+Your answer
+
+What are the key application metrics to monitor for stream processing services? How have you personally implemented this? What actions have you taken based on the measured values? *
+Your answer
+
+How have you implemented log collection and analytics? What systems/applications do you collect logs from? What has been the ingest rate on some of the system you have managed? *
+Your answer
+
+How have you integrated log analytics and application metrics? What problems did that solve that either alone did not? What would you do differently next time? *
+Your answer
+
+DEV OPS
+How have you personally implemented continuous delivery? What would you do different the next time? *
+Your answer
+
+What are the challenges related to application upgrades? How is that affected by a microservice architecture? *
+Your answer
+
+What technologies have you used in implementing "infrastructure as code"? How far were you able to take this? What would you now do differently? *
+
+Ansible Playbook
+What do you believe is the development team's role in managing production systems? Why? What has been your experience related to this in past projects? *
+
+Development team should also be aware of the services and architecture so that they can design 
+
+SUBMIT
+Page 1 of 1
+Never submit passwords through Google Forms.
+This form was created inside VIMANA. Report Abuse - Terms of Service - Additional Terms
+Google Forms
