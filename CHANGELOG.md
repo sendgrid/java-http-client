@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [4.1.1] - 2016-10-11
+### Added
+- [Pull #23](https://github.com/sendgrid/java-http-client/pull/23): Moved Mockito to test dependency.
+- BIG thanks to [Joseph Lust](https://github.com/twistedpair) for the pull request!
+
 ## [4.1.0] - 2016-10-11
 ### Added
 - [Pull #17](https://github.com/sendgrid/java-http-client/pull/17): Assign server response outside try block

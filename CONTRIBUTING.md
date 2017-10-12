@@ -64,7 +64,7 @@ We welcome direct contributions to the java-http-client code base. Thank you!
 
 ##### Prerequisites #####
 
-- Java version Oracle JDK 7, 8 or OpenJDK 7
+- Java version Oracle JDK 8 or OpenJDK 7
 - Please see [build.gradle](https://github.com/sendgrid/java-http-client/blob/master/build.gradle)
 
 ##### Initial setup: #####
@@ -89,7 +89,7 @@ source ./sendgrid.env
 ```bash
 ./gradlew build
 cd examples
-javac -classpath {path_to}/sendgrid-java-http-client-4.1.0-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.1.0-jar.jar:. Example
+javac -classpath {path_to}/sendgrid-java-http-client-4.1.1-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.1.1-jar.jar:. Example
 ```
 
 <a name="understanding_the_codebase"></a>

@@ -12,7 +12,7 @@ All updates to this project is documented in our [CHANGELOG](https://github.com/
 
 ## Prerequisites
 
-- Java version Oracle JDK 7, 8 or OpenJDK 7
+- Java version Oracle JDK 8 or OpenJDK 7
 
 ## Install via Maven w/ Gradle
 
@@ -20,7 +20,7 @@ All updates to this project is documented in our [CHANGELOG](https://github.com/
 ...
 dependencies {
   ...
-  compile 'com.sendgrid:java-http-client:4.1.0'
+  compile 'com.sendgrid:java-http-client:4.1.1'
 }
 
 repositories {
@@ -35,7 +35,7 @@ repositories {
 <dependency>
     <groupId>com.sendgrid</groupId>
     <artifactId>java-http-client</artifactId>
-    <version>3.0.0</version>
+    <version>4.1.1</version>
 </dependency>
 ```
 
@@ -43,7 +43,7 @@ repositories {
 
 ## Install via Fat Jar
 
-[Download](http://repo1.maven.org/maven2/com/sendgrid/java-http-client/4.1.0/java-http-client-4.1.0-jar.jar)
+[sendgrid-java-latest.jar](http://dx.sendgrid.com/downloads/java-http-client/java-http-client-latest.jar)
 
 ## Dependencies
 
