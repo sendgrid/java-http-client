@@ -1,13 +1,32 @@
-[![Build Status](https://travis-ci.org/sendgrid/java-http-client.svg?branch=master)](https://travis-ci.org/sendgrid/java-http-client) [![Maven](https://maven-badges.herokuapp.com/maven-central/com.sendgrid/java-http-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.sendgrid/java-http-client)
+![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+
+[![Build Status](https://travis-ci.org/sendgrid/java-http-client.svg?branch=master)](https://travis-ci.org/sendgrid/java-http-client)
+[![Maven Central](https://img.shields.io/maven-central/v/com.sendgrid/java-http-client.svg)](http://mvnrepository.com/artifact/com.sendgrid/java-http-client)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
+[![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
+[![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/java-http-client.svg)](https://github.com/sendgrid/java-http-client/graphs/contributors)
 
 **Quickly and easily access any RESTful or RESTful-like API.**
 
 If you are looking for the SendGrid API client library, please see [this repo](https://github.com/sendgrid/sendgrid-java).
 
+# Table of Contents
+
+* [Announcements](#announcements)
+* [Installation](#installation)
+* [Quick Start](#quick-start)
+* [Usage](#usage)
+* [Roadmap](#roadmap)
+* [How to Contribute](#contribute)
+* [About](#about)
+* [License](#license)
+
+<a name="announcements"></a>
 # Announcements
 
 All updates to this project is documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
 
+<a name="installation"></a>
 # Installation
 
 ## Prerequisites
@@ -49,6 +68,7 @@ repositories {
 
 - Please see the [build.gradle file](https://github.com/sendgrid/java-http-client/blob/master/build.gradle)
 
+<a name="quick-start"></a>
 # Quick Start
 
 Here is a quick example:
@@ -95,6 +115,7 @@ try {
 }
 ```
 
+<a name="usage"></a>
 # Usage
 
 - [Example Code](https://github.com/sendgrid/java-http-client/tree/master/examples)
@@ -115,11 +136,13 @@ cd examples
 javac -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example
 ```
 
-## Roadmap
+<a name="roadmap"></a>
+# Roadmap
 
 If you are interested in the future direction of this project, please take a look at our [milestones](https://github.com/sendgrid/java-http-client/milestones). We would love to hear your feedback.
 
-## How to Contribute
+<a name="contribute"></a>
+# How to Contribute
 
 We encourage contribution to our projects please see our [CONTRIBUTING](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md) guide for details.
 
@@ -130,10 +153,12 @@ Quick links:
 - [Sign the CLA to Create a Pull Request](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#cla)
 - [Improvements to the Codebase](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#improvements_to_the_codebase)
 
+<a name="about"></a>
 # About
 
 java-http-client is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
 
 java-http-client is maintained and funded by SendGrid, Inc. The names and logos for java-http-client are trademarks of SendGrid, Inc.
 
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+# License
+[The MIT License (MIT)](LICENSE.txt)
