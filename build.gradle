@@ -32,7 +32,7 @@ if (!hasProperty("sonatypeUsername")) {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.8'
+  gradleVersion = '3.+'
 }
 
 buildscript {
