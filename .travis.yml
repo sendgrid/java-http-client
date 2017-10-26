@@ -6,6 +6,7 @@ jdk:
 before_script:
 - chmod a+x gradlew
 script:
+- ./gradlew assemble
 - ./gradlew build check
 after_script:
 - "./scripts/s3upload.sh"
