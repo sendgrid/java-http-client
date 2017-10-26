@@ -31,10 +31,6 @@ if (!hasProperty("sonatypeUsername")) {
   ext.sonatypePassword = null
 }
 
-/*task wrapper(type: Wrapper) {
-  gradleVersion = '1.8'
-}*/
-
 buildscript {
   dependencies {
     classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
