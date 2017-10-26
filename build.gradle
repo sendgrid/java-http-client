@@ -31,9 +31,9 @@ if (!hasProperty("sonatypeUsername")) {
   ext.sonatypePassword = null
 }
 
-task wrapper(type: Wrapper) {
-  gradleVersion = '3.+'
-}
+/*task wrapper(type: Wrapper) {
+  gradleVersion = '1.8'
+}*/
 
 buildscript {
   dependencies {
