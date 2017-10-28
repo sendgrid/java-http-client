@@ -75,7 +75,6 @@
 #  identical-code:
 #    config:
 #      threshold: #   language-specific defaults. an override will affect all languages.
-	
 exclude_paths:
 - "scripts/"
 - ".github/"
