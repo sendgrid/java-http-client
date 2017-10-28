@@ -15,4 +15,3 @@ You can do this like so:
 
 ```java
 System.out.println(request.getBody());
-```

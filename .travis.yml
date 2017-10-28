@@ -1,10 +1,12 @@
 language: java
-sudo: false
 jdk:
 - oraclejdk8
-- openjdk7
+- openjdk8
+before_script:
+- chmod a+x gradlew
+script:
+- ./gradlew build check
 after_script:
-- "./gradlew build"
 - "./scripts/s3upload.sh"
 env:
   global:
