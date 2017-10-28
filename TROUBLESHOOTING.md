@@ -11,8 +11,7 @@ If you can't find a solution below, please open an [issue](https://github.com/se
 
 When debugging or testing, it may be useful to examine the raw request body to compare against the [documented format](https://sendgrid.com/docs/API_Reference/api_v3.html).
 
-You can do this right before you call `request.setBody(mail.build())` like so:
+You can do this like so:
 
 ```java
-System.out.println(mail.build());
-```
+System.out.println(request.getBody());
