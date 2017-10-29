@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sendgrid/java-http-client.svg?branch=master)](https://travis-ci.org/sendgrid/java-http-client)
 [![Maven Central](https://img.shields.io/maven-central/v/com.sendgrid/java-http-client.svg)](http://mvnrepository.com/artifact/com.sendgrid/java-http-client)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.txt)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/java-http-client.svg)](https://github.com/sendgrid/java-http-client/graphs/contributors)
 
@@ -144,4 +144,4 @@ java-http-client is guided and supported by the SendGrid [Developer Experience T
 java-http-client is maintained and funded by SendGrid, Inc. The names and logos for java-http-client are trademarks of SendGrid, Inc.
 
 # License
-[The MIT License (MIT)](LICENSE.txt)
+[The MIT License (MIT)](LICENSE.md)
