@@ -75,6 +75,11 @@
 #  identical-code:
 #    config:
 #      threshold: #   language-specific defaults. an override will affect all languages.
+
+engines:
+  sonar-java:
+    enabled: true
+    channel: beta
 exclude_paths:
 - "scripts/"
 - ".github/"
