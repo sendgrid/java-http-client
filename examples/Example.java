@@ -28,10 +28,7 @@ public class Example {
     request.addQueryParam("limit", "100");
     request.addQueryParam("offset", "0");
     try {
-      response = client.api(request);
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getBody());
-      System.out.println(response.getHeaders());
+      logResponse(client, request);
     } catch (IOException ex) {
       throw ex;
     }
@@ -64,10 +61,7 @@ public class Example {
     request.setMethod(Method.GET);
     request.setEndpoint("/v3/api_keys/" + apiKeyId);
     try {
-      response = client.api(request);
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getBody());
-      System.out.println(response.getHeaders());
+      logResponse(client, request);
     } catch (IOException ex) {
       throw ex;
     }
@@ -76,10 +70,7 @@ public class Example {
     request.setMethod(Method.PATCH);
     request.setBody("{\"name\": \"A New Ho}");
     try {
-      response = client.api(request);
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getBody());
-      System.out.println(response.getHeaders());
+      logResponse(client, request);
     } catch (IOException ex) {
       throw ex;
     }
@@ -89,10 +80,7 @@ public class Example {
     request.setMethod(Method.PUT);
     request.setBody("{\"name\": \"A New Hope\",\"scopes\": [\"user.profile.read\",\"user.profile.update\"]}");
     try {
-      response = client.api(request);
-      System.out.println(response.getStatusCode());
-      System.out.println(response.getBody());
-      System.out.println(response.getHeaders());
+      logResponse(client, request);
     } catch (IOException ex) {
       throw ex;
     }
@@ -107,5 +95,12 @@ public class Example {
     } catch (IOException ex) {
       throw ex;
     }
+  }
+  
+  private static void logResponse(Client client, Request request) {
+    Response response = client.api(request);
+    System.out.println(response.getStatusCode());
+    System.out.println(response.getBody());
+    System.out.println(response.getHeaders());
   }
 }
