@@ -17,7 +17,7 @@ apply plugin: 'signing'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 group         = 'com.sendgrid'
-version       = '4.1.1'
+version       = '4.2.0'
 ext.packaging = 'jar'
 
 allprojects {
