@@ -74,17 +74,23 @@ git clone https://github.com/sendgrid/java-http-client.git
 cd java-http-client
 ```
 
-##### Execute: #####
+### Environment Variables
 
-See the [examples folder](https://github.com/sendgrid/java-http-client/tree/master/examples) to get started quickly.
+First, get your free SendGrid account [here](https://sendgrid.com/free?source=sendgrid-python).
 
-You will need to setup the following environment to use the SendGrid example:
+Next, update your environment with your [SENDGRID_API_KEY](https://app.sendgrid.com/settings/api_keys).
 
 ```bash
 echo "export SENDGRID_API_KEY='YOUR_API_KEY'" > sendgrid.env
 echo "sendgrid.env" >> .gitignore
 source ./sendgrid.env
 ```
+
+##### Execute: #####
+
+See the [examples folder](https://github.com/sendgrid/java-http-client/tree/master/examples) to get started quickly.
+
+You will need to setup the following environment to use the SendGrid example:
 
 ```bash
 ./gradlew build
