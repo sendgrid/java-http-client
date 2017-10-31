@@ -53,19 +53,17 @@ public class Client {
 	 * Constructor for using the default CloseableHttpClient.
 	 */
 	public Client() {
-		this.httpClient = HttpClients.createDefault();
-		this.test = false;
+		this(false);
 	}
 
 	/**
-	 * Constructor for passing in an httpClient for mocking.
+	 * Constructor for passing in an httpClient.
 	 *
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
 	 */
 	public Client(CloseableHttpClient httpClient) {
-		this.httpClient = httpClient;
-		this.test = false;
+		this(httpClient, false);
 	}
 
 	/**
@@ -75,9 +73,22 @@ public class Client {
 	 *            is a Bool
 	 */
 	public Client(Boolean test) {
-		this.httpClient = HttpClients.createDefault();
+		this(HttpClients.createDefault(), test);
+	}
+
+	/**
+	 * Constructor for passing in a  an httpClient and test parameter to allow for http calls
+	 *
+	 * @param httpClient
+	 *            an Apache CloseableHttpClient
+	 * @param test
+	 *            is a Bool
+	 */
+	public Client(CloseableHttpClient httpClient, Boolean test) {
+		this.httpClient = httpClient;
 		this.test = test;
 	}
+
 
 	/**
 	 * Add query parameters to a URL.
