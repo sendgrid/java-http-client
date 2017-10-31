@@ -138,7 +138,7 @@ cd examples
 javac -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example
 ```
 
-## Environment Variables 
+## Environment Variables
 
 You can do the following to create a .env file:
 
@@ -162,6 +162,7 @@ Quick links:
 - [Bug Reports](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#submit-a-bug-report)
 - [Sign the CLA to Create a Pull Request](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#cla)
 - [Improvements to the Codebase](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#improvements-to-the-codebase)
+- [Review Pull Requests](https://github.com/sendgrid/java-http-client/issues/CONTRIBUTING.md#Code-Reviews)
 
 <a name="about"></a>
 # About
