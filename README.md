@@ -66,7 +66,7 @@ repositories {
 
 ## Dependencies
 
-- Please see the [build.gradle file](https://github.com/sendgrid/java-http-client/blob/master/build.gradle)
+- Please seethe [build.gradle file](https://github.com/sendgrid/java-http-client/blob/master/build.gradle)
 
 <a name="quick-start"></a>
 # Quick Start
