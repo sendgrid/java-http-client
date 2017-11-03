@@ -52,7 +52,7 @@ Before you decide to create a new issue, please try the following:
 
 ### Please use our Bug Report Template
 
-In order to make the process easier, we've included a [sample bug report template](https://github.com/sendgrid/java-http-client/.github/ISSUE_TEMPLATE) (borrowed from [Ghost](https://github.com/TryGhost/Ghost/)). The template uses [GitHub flavored markdown](https://help.github.com/articles/github-flavored-markdown/) for formatting.
+In order to make the process easier, we've included a [sample bug report template](https://github.com/sendgrid/java-http-client/blob/master/.github/ISSUE_TEMPLATE) (borrowed from [Ghost](https://github.com/TryGhost/Ghost/)). The template uses [GitHub flavored markdown](https://help.github.com/articles/github-flavored-markdown/) for formatting.
 
 <a name="improvements-to-the-codebase"></a>
 ## Improvements to the Codebase
@@ -121,7 +121,7 @@ Provides a standard interface to an API's response.
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in [`http/src/test/java/com/sendgrid`](https://github.com/sendgrid/java-http-client/blob/master/src/test/java/com/sendgrid/ClientTest.java).
+All test files are in [`java-http-client/src/test/java/com/sendgrid`](https://github.com/sendgrid/java-http-client/tree/master/src/test/java/com/sendgrid).
 
 For the purposes of contributing to this repo, please update the [`ClientTest.java`](https://github.com/sendgrid/java-http-client/blob/master/src/test/java/com/sendgrid/ClientTest.java) file with unit tests as you modify the code.
 

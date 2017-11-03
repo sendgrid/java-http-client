@@ -22,3 +22,6 @@ repo/
 /.settings/
 /.classpath
 /.project
+
+# Environment files
+.env/*.*

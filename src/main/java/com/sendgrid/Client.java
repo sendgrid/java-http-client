@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.Header;
-import org.apache.http.StatusLine;
 import org.apache.http.annotation.NotThreadSafe;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
@@ -31,6 +30,7 @@ import org.apache.http.impl.client.HttpClients;
 class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	public static final String METHOD_NAME = "DELETE";
 
+	@Override
 	public String getMethod() {
 		return METHOD_NAME;
 	}
@@ -48,16 +48,20 @@ public class Client {
 
 	private CloseableHttpClient httpClient;
 	private Boolean test;
+	private boolean createdHttpClient;
 
 	/**
 	 * Constructor for using the default CloseableHttpClient.
 	 */
 	public Client() {
-		this(false);
+		this.httpClient = HttpClients.createDefault();
+		this.test = false;
+		this.createdHttpClient = true;
 	}
 
 	/**
-	 * Constructor for passing in an httpClient.
+	 * Constructor for passing in an httpClient, typically for mocking. Passed-in httpClient will not be closed
+	 * by this Client.
 	 *
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
@@ -87,6 +91,7 @@ public class Client {
 	public Client(CloseableHttpClient httpClient, Boolean test) {
 		this.httpClient = httpClient;
 		this.test = test;
+		this.createdHttpClient = true;
 	}
 
 
@@ -340,7 +345,9 @@ public class Client {
 	@Override
 	public void finalize() throws Throwable {
 		try {
-			this.httpClient.close();
+			if(this.createdHttpClient) {
+				this.httpClient.close();
+			}
 		} catch(IOException e) {
 			throw new Throwable(e.getMessage());
 		} finally {
