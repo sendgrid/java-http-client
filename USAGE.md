@@ -1,5 +1,5 @@
 # Usage
-
+- [SendGrid Docs](https://sendgrid.com/docs/API_Reference/SMTP_API/index.html)
 - [Example Code](https://github.com/sendgrid/java-http-client/tree/master/examples)
 
 The example uses SendGrid, you can get your free account [here](https://sendgrid.com/free?source=java-http-client).

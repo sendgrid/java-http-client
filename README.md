@@ -117,7 +117,9 @@ try {
 
 <a name="usage"></a>
 # Usage
+[Library Usage Documentation](USAGE.md)
 
+<<<<<<< HEAD
 - [Example Code](https://github.com/sendgrid/java-http-client/tree/master/examples)
 - [Library Usage Documentation](USAGE.md)
 
@@ -146,6 +148,8 @@ You can do the following to create a .env file:
 
 Then, just add your API Key into your .env file.
 
+=======
+>>>>>>> 9215601636963e56832fc2344fb87de9e211d67c
 <a name="roadmap"></a>
 # Roadmap
 
@@ -171,4 +175,8 @@ java-http-client is guided and supported by the SendGrid [Developer Experience T
 java-http-client is maintained and funded by SendGrid, Inc. The names and logos for java-http-client are trademarks of SendGrid, Inc.
 
 # License
+<<<<<<< HEAD
 [The MIT License (MIT)](LICENSE.txt)
+=======
+[The MIT License (MIT)](LICENSE.md)
+>>>>>>> 9215601636963e56832fc2344fb87de9e211d67c
