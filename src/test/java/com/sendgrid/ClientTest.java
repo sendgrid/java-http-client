@@ -174,4 +174,28 @@ public class ClientTest extends Mockito {
   public void testDelete() {
     testMethod(Method.DELETE, 204);
   }
+
+  @Test
+  public void testFailedRequest() {
+    Request request = new Request();
+    request.setMethod(Method.POST);
+    request.setBody("{\"request\":\"body\"}");
+    try {
+      when(statusline.getStatusCode()).thenReturn(400);
+      when(response.getStatusLine()).thenReturn(statusline);
+      when(response.getAllHeaders()).thenReturn(new Header[]{});
+      when(response.getEntity()).thenReturn(
+        new InputStreamEntity(
+          new ByteArrayInputStream(("Bad request").getBytes())));
+      when(httpClient.execute(Matchers.any(HttpPost.class))).thenReturn(response);
+      request.setEndpoint("/test");
+      request.addHeader("Authorization", "Bearer XXXX");
+      Client client = new Client(httpClient);
+      client.api(request);
+      Assert.fail("Exception should be thrown");
+    } catch (IOException ex) {
+      Assert.assertEquals("Request returned Status Code: 400, Body: Bad request", ex.getMessage());
+    }
+  }
+
 }

@@ -300,7 +300,7 @@ public class Client {
 				Response response = getResponse(serverResponse);
 				if(response.getStatusCode() >= 300) {
 					//throwing IOException here to not break API behavior.
-					throw new IOException("Request returned status Code "+response.getStatusCode()+"Body:"+response.getBody());
+					throw new IOException(String.format("Request returned Status Code: %d, Body: %s", response.getStatusCode(), response.getBody()));
 				}
 				return response;
 			} finally {
