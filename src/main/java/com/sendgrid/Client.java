@@ -143,11 +143,9 @@ public class Client implements Closeable {
 	 */
 	public Response getResponse(CloseableHttpResponse response) throws IOException {
 		ResponseHandler<String> handler = new SendGridResponseHandler();
-		String responseBody = "";
+		String responseBody = handler.handleResponse(response);
 
 		int statusCode = response.getStatusLine().getStatusCode();
-
-		responseBody = handler.handleResponse(response);
 
 		Header[] headers = response.getAllHeaders();
 		Map<String, String> responseHeaders = new HashMap<String, String>();
