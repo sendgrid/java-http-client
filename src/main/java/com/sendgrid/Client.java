@@ -109,7 +109,7 @@ public class Client implements Closeable {
 	 */
 	public URI buildUri(String baseUri, String endpoint, Map<String, String> queryParams) throws URISyntaxException {
 		URIBuilder builder = new URIBuilder();
-		URI uri;
+		URI uri = null;
 
 		if (this.test == true) {
 			builder.setScheme("http");
@@ -338,7 +338,7 @@ public class Client implements Closeable {
 
 	@Override
 	public void close() throws IOException {
-      		this.httpClient.close();
+      	this.httpClient.close();
 	}
 
 	@Override
