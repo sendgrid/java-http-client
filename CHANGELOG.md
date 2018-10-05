@@ -22,14 +22,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### BREAKING Change
 - [Pull #14](https://github.com/sendgrid/java-http-client/pull/14): Make response have private variables
 - Fixed [Issue #12](https://github.com/sendgrid/java-http-client/issues/12): The public Response variables should be private
-- The breaking change is that variables that were public are now private and accessable only via getters and setters
+- The breaking change is that variables that were public are now private and accessible only via getters and setters
 - BIG thanks to [Diego Camargo](https://github.com/belfazt) for the pull request!
 
 ## [3.0.0] - 2016-10-06
 ### BREAKING Change
 - [Pull #15](https://github.com/sendgrid/java-http-client/pull/15): Update the request object with sensible defaults and access methods
 - Fixes [Issue #13](https://github.com/sendgrid/java-http-client/issues/13): Update the Request object with sensible defaults and access methods
-- The breaking change is that variables that were public are now private and accessable only via getters and setters
+- The breaking change is that variables that were public are now private and accessible only via getters and setters
 - BIG thanks to [Diego Camargo](https://github.com/belfazt) for the pull request!
 
 ## [2.3.4] - 2016-08-09
