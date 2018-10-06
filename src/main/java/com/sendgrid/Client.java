@@ -50,7 +50,6 @@ public class Client implements Closeable {
 
 	private CloseableHttpClient httpClient;
 	private Boolean test;
-	private boolean createdHttpClient;
 
 	/**
 	 * Constructor for using the default CloseableHttpClient.
@@ -58,7 +57,6 @@ public class Client implements Closeable {
 	public Client() {
 		this.httpClient = HttpClients.createDefault();
 		this.test = false;
-		this.createdHttpClient = true;
 	}
 
 	/**
@@ -93,7 +91,6 @@ public class Client implements Closeable {
 	public Client(CloseableHttpClient httpClient, Boolean test) {
 		this.httpClient = httpClient;
 		this.test = test;
-		this.createdHttpClient = true;
 	}
 
 
@@ -344,7 +341,7 @@ public class Client implements Closeable {
 	}
 
 	@Override
-	public void finalize() throws Throwable {
+	protected void finalize() throws Throwable {
 		try {
 			close();
 		} catch(IOException e) {
