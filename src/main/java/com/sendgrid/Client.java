@@ -46,7 +46,7 @@ class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 /**
  * Class Client allows for quick and easy access any REST or REST-like API.
  */
-public final class Client implements Closeable {
+public class Client implements Closeable {
 
 	private CloseableHttpClient httpClient;
 	private Boolean test;

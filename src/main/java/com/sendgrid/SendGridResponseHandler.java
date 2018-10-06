@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * </p>
  *
  */
-public final class SendGridResponseHandler extends AbstractResponseHandler<String> {
+public class SendGridResponseHandler extends AbstractResponseHandler<String> {
 
     /**
      * Read the entity from the response body and pass it to the entity handler

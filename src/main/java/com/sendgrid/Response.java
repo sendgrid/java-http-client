@@ -5,7 +5,7 @@ import java.util.Map;
 /**
   * Class Response provides a standard interface to an API's response.
   */
-public final class Response {
+public class Response {
   private int statusCode;
   private String body;
   private Map<String, String> headers;

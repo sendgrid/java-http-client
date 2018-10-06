@@ -22,6 +22,7 @@
 <!--
   The following checks have been disabled or configured to be less picky:
     - AvoidInlineConditionals, disabled
+    - DesignForExtension, disabled
     - FileTabCharacter, disabled
     - HiddenField, disabled
     - JavadocMethod, disabled
@@ -143,7 +144,6 @@
 
         <!-- Checks for class design                         -->
         <!-- See http://checkstyle.sf.net/config_design.html -->
-        <module name="DesignForExtension"/>
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>

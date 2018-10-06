@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
   * Class Response provides a standard interface to an API's HTTP request.
   */
-public final class Request {
+public class Request {
   private Method method;
   private String baseUri;
   private String endpoint;
