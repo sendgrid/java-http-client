@@ -30,14 +30,14 @@ import org.apache.http.impl.client.HttpClients;
 // Hack to get DELETE to accept a request body
 @NotThreadSafe
 class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
-	public static final String METHOD_NAME = "DELETE";
+	static final String METHOD_NAME = "DELETE";
 
 	@Override
 	public String getMethod() {
 		return METHOD_NAME;
 	}
 
-	public HttpDeleteWithBody(final String uri) {
+	HttpDeleteWithBody(final String uri) {
 		super();
 		setURI(URI.create(uri));
 	}
@@ -46,7 +46,7 @@ class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 /**
  * Class Client allows for quick and easy access any REST or REST-like API.
  */
-public class Client implements Closeable {
+public final class Client implements Closeable {
 
 	private CloseableHttpClient httpClient;
 	private Boolean test;
@@ -66,29 +66,29 @@ public class Client implements Closeable {
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
 	 */
-	public Client(CloseableHttpClient httpClient) {
+	public Client(final CloseableHttpClient httpClient) {
 		this(httpClient, false);
 	}
 
 	/**
-	 * Constructor for passing in a test parameter to allow for http calls
+	 * Constructor for passing in a test parameter to allow for http calls.
 	 *
 	 * @param test
 	 *            is a Bool
 	 */
-	public Client(Boolean test) {
+	public Client(final Boolean test) {
 		this(HttpClients.createDefault(), test);
 	}
 
 	/**
-	 * Constructor for passing in a  an httpClient and test parameter to allow for http calls
+	 * Constructor for passing in a  an httpClient and test parameter to allow for http calls.
 	 *
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
 	 * @param test
 	 *            is a Bool
 	 */
-	public Client(CloseableHttpClient httpClient, Boolean test) {
+	public Client(final CloseableHttpClient httpClient, final Boolean test) {
 		this.httpClient = httpClient;
 		this.test = test;
 	}
@@ -104,11 +104,12 @@ public class Client implements Closeable {
 	 * @param queryParams
 	 *            map of key, values representing the query parameters
 	 */
-	public URI buildUri(String baseUri, String endpoint, Map<String, String> queryParams) throws URISyntaxException {
+	public URI buildUri(final String baseUri, final String endpoint, final Map<String, String> queryParams)
+			throws URISyntaxException {
 		URIBuilder builder = new URIBuilder();
 		URI uri;
 
-		if (this.test == true) {
+		if (test) {
 			builder.setScheme("http");
 		} else {
 			builder.setScheme("https");
@@ -138,7 +139,7 @@ public class Client implements Closeable {
 	 * @param response
 	 *            from a call to a CloseableHttpClient
 	 */
-	public Response getResponse(CloseableHttpResponse response) throws IOException {
+	public Response getResponse(final CloseableHttpResponse response) throws IOException {
 		ResponseHandler<String> handler = new SendGridResponseHandler();
 		String responseBody = "";
 
@@ -159,7 +160,7 @@ public class Client implements Closeable {
 	 * Make a GET request and provide the status code, response body and
 	 * response headers.
 	 */
-	public Response get(Request request) throws URISyntaxException, IOException {
+	public Response get(final Request request) throws URISyntaxException, IOException {
 		URI uri = null;
 		HttpGet httpGet = null;
 
@@ -182,7 +183,7 @@ public class Client implements Closeable {
 	 * Make a POST request and provide the status code, response body and
 	 * response headers.
 	 */
-	public Response post(Request request) throws URISyntaxException, IOException {
+	public Response post(final Request request) throws URISyntaxException, IOException {
 		URI uri = null;
 		HttpPost httpPost = null;
 
@@ -209,7 +210,7 @@ public class Client implements Closeable {
 	 * Make a PATCH request and provide the status code, response body and
 	 * response headers.
 	 */
-	public Response patch(Request request) throws URISyntaxException, IOException {
+	public Response patch(final Request request) throws URISyntaxException, IOException {
 		URI uri = null;
 		HttpPatch httpPatch = null;
 
@@ -236,7 +237,7 @@ public class Client implements Closeable {
 	 * Make a PUT request and provide the status code, response body and
 	 * response headers.
 	 */
-	public Response put(Request request) throws URISyntaxException, IOException {
+	public Response put(final Request request) throws URISyntaxException, IOException {
 		URI uri = null;
 		HttpPut httpPut = null;
 
@@ -262,7 +263,7 @@ public class Client implements Closeable {
 	/**
 	 * Make a DELETE request and provide the status code and response headers.
 	 */
-	public Response delete(Request request) throws URISyntaxException, IOException {
+	public Response delete(final Request request) throws URISyntaxException, IOException {
 		URI uri = null;
 		HttpDeleteWithBody httpDelete = null;
 
@@ -285,13 +286,13 @@ public class Client implements Closeable {
 		return executeApiCall(httpDelete);
 	}
 
-	private void writeContentTypeIfNeeded(Request request, HttpMessage httpMessage) {
+	private void writeContentTypeIfNeeded(final Request request, final HttpMessage httpMessage) {
 		if (!"".equals(request.getBody())) {
 			httpMessage.setHeader("Content-Type", "application/json");
 		}
 	}
 
-	private Response executeApiCall(HttpRequestBase httpPost) throws IOException {
+	private Response executeApiCall(final HttpRequestBase httpPost) throws IOException {
 		try {
 			CloseableHttpResponse serverResponse = httpClient.execute(httpPost);
 			try {
@@ -299,7 +300,7 @@ public class Client implements Closeable {
 			} finally {
 				serverResponse.close();
 			}
-		} catch(ClientProtocolException e) {
+		} catch (ClientProtocolException e) {
 			throw new IOException(e.getMessage());
 		}
 	}
@@ -307,7 +308,7 @@ public class Client implements Closeable {
 	/**
 	 * A thin wrapper around the HTTP methods.
 	 */
-	public Response api(Request request) throws IOException {
+	public Response api(final Request request) throws IOException {
 		try {
 			if (request.getMethod() == null) {
 				throw new IOException("We only support GET, PUT, PATCH, POST and DELETE.");
@@ -344,7 +345,7 @@ public class Client implements Closeable {
 	protected void finalize() throws Throwable {
 		try {
 			close();
-		} catch(IOException e) {
+		} catch (IOException e) {
 			throw new Throwable(e.getMessage());
 		} finally {
 			super.finalize();

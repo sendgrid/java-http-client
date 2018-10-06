@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
   * Class Response provides a standard interface to an API's HTTP request.
   */
-public class Request {
+public final class Request {
   private Method method;
   private String baseUri;
   private String endpoint;
@@ -32,35 +32,35 @@ public class Request {
     this.clearQueryParams();
   }
 
-  public void addQueryParam(String key, String value) {
+  public void addQueryParam(final String key, final String value) {
     this.queryParams.put(key, value);
   }
 
-  public void addHeader(String key, String value) {
+  public void addHeader(final String key, final String value) {
     this.headers.put(key, value);
   }
 
-  public String removeQueryParam(String key) {
+  public String removeQueryParam(final String key) {
     return this.queryParams.remove(key);
   }
 
-  public String removeHeader(String key) {
+  public String removeHeader(final String key) {
     return this.headers.remove(key);
   }
 
-  public void setMethod(Method method) {
+  public void setMethod(final Method method) {
     this.method = method;
   }
 
-  public void setBaseUri(String baseUri) {
+  public void setBaseUri(final String baseUri) {
     this.baseUri = baseUri;
   }
 
-  public void setEndpoint(String endpoint) {
+  public void setEndpoint(final String endpoint) {
     this.endpoint = endpoint;
   }
 
-  public void setBody(String body) {
+  public void setBody(final String body) {
     this.body = body;
   }
 

@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * A {@link org.apache.http.client.ResponseHandler} that returns the response body as a String
- * for all responses. 
+ * for all responses.
  * <p>
  * If this is used with
  * {@link org.apache.http.client.HttpClient#execute(
@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * </p>
  *
  */
-public class SendGridResponseHandler extends AbstractResponseHandler<String>{
+public final class SendGridResponseHandler extends AbstractResponseHandler<String> {
 
     /**
      * Read the entity from the response body and pass it to the entity handler
@@ -34,9 +34,9 @@ public class SendGridResponseHandler extends AbstractResponseHandler<String>{
         final HttpEntity entity = response.getEntity();
         return entity == null ? null : handleEntity(entity);
     }
-	
+
     @Override
-    public String handleEntity(HttpEntity entity) throws IOException {
+    public String handleEntity(final HttpEntity entity) throws IOException {
         return EntityUtils.toString(entity, StandardCharsets.UTF_8);
     }
 
