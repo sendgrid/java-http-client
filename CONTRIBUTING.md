@@ -136,11 +136,6 @@ Run the tests:
 
 Generally, we follow the style guidelines as suggested by the official language. However, we ask that you conform to the styles that already exist in the library. If you wish to deviate, please explain your reasoning.
 
-Please run your code through:
-
-- [SpotBugs](https://spotbugs.github.io/)
-- [CheckStyle](http://checkstyle.sourceforge.net/) with [Google's Java Style Guide](http://checkstyle.sourceforge.net/reports/google-java-style.html).
-
 <a name="creating-a-pull-request"></a>
 ## Creating a Pull Request
 
