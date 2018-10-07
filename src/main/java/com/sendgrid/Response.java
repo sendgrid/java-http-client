@@ -13,7 +13,8 @@ public class Response {
   /**
     * Set the API's response.
     */
-  public Response(final int statusCode, final String responseBody, final Map<String, String> responseHeaders) {
+  public Response(final int statusCode, final String responseBody,
+                  final Map<String, String> responseHeaders) {
     this.statusCode = statusCode;
     this.body = responseBody;
     this.headers = responseHeaders;
