@@ -12,19 +12,18 @@ public class TestRequiredFilesExist {
         new File("./docker/Docker").exists();
         assertTrue(dockerExists);
     }
-
-    // ./docker-compose.yml or ./docker/docker-compose.yml
+    
+    /* // ./docker-compose.yml or ./docker/docker-compose.yml
     @Test public void checkDockerComposeExists() {
         boolean dockerComposeExists = new File("./docker-compose.yml").exists() ||
         new File("./docker/docker-compose.yml").exists();
         assertTrue(dockerComposeExists);
     }
-
-    // ./.env_sample
+     // ./.env_sample
     @Test public void checkEnvSampleExists() {
         assertTrue(new File("./.env_sample").exists());
-    }
-
+    } */
+    
     // ./.gitignore
     @Test public void checkGitIgnoreExists() {
         assertTrue(new File("./.gitignore").exists());
@@ -85,8 +84,8 @@ public class TestRequiredFilesExist {
         assertTrue(new File("./USAGE.md").exists());
     }
 
-    // ./USE_CASES.md
+    /* // ./USE_CASES.md
     @Test public void checkUseCases() {
         assertTrue(new File("./USE_CASES.md").exists());
-    }
+    } */
 }

@@ -109,7 +109,7 @@ public class Client implements Closeable {
 	 */
 	public URI buildUri(String baseUri, String endpoint, Map<String, String> queryParams) throws URISyntaxException {
 		URIBuilder builder = new URIBuilder();
-		URI uri;
+		URI uri = null;
 
 		if (this.test == true) {
 			builder.setScheme("http");
@@ -143,11 +143,9 @@ public class Client implements Closeable {
 	 */
 	public Response getResponse(CloseableHttpResponse response) throws IOException {
 		ResponseHandler<String> handler = new SendGridResponseHandler();
-		String responseBody = "";
+		String responseBody = handler.handleResponse(response);
 
 		int statusCode = response.getStatusLine().getStatusCode();
-
-		responseBody = handler.handleResponse(response);
 
 		Header[] headers = response.getAllHeaders();
 		Map<String, String> responseHeaders = new HashMap<String, String>();
@@ -340,7 +338,7 @@ public class Client implements Closeable {
 
 	@Override
 	public void close() throws IOException {
-      		this.httpClient.close();
+      	this.httpClient.close();
 	}
 
 	@Override
