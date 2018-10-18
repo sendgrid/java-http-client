@@ -3,6 +3,7 @@ Hello! Thank you for choosing to help contribute to one of the SendGrid open sou
 - [CLAs and CCLAs](#cla)
 - [Roadmap & Milestones](#roadmap)
 - [Feature Request](#feature-request)
+- [Code Reviews](#code-reviews)
 - [Submit a Bug Report](#submit-a-bug-report)
 - [Improvements to the Codebase](#improvements-to-the-codebase)
 - [Understanding the Code Base](#understanding-the-codebase)
@@ -35,6 +36,10 @@ The GitHub issue tracker is the preferred channel for library feature requests, 
 
 - Please **search for existing issues** in order to ensure we don't have duplicate bugs/feature requests.
 - Please be respectful and considerate of others when commenting on issues
+
+<a name="code-reviews"></a>
+## Code Reviews
+If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how, Github has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).
 
 <a name="submit-a-bug-report"></a>
 ## Submit a Bug Report
