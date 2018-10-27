@@ -27,7 +27,10 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-// Hack to get DELETE to accept a request body
+
+/**
+ * Hack to get DELETE to accept a request body.
+ */
 @NotThreadSafe
 class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	public static final String METHOD_NAME = "DELETE";
@@ -43,6 +46,7 @@ class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	}
 }
 
+
 /**
  * Class Client allows for quick and easy access any REST or REST-like API.
  */
@@ -52,6 +56,7 @@ public class Client implements Closeable {
 	private Boolean test;
 	private boolean createdHttpClient;
 
+
 	/**
 	 * Constructor for using the default CloseableHttpClient.
 	 */
@@ -60,6 +65,7 @@ public class Client implements Closeable {
 		this.test = false;
 		this.createdHttpClient = true;
 	}
+
 
 	/**
 	 * Constructor for passing in an httpClient, typically for mocking. Passed-in httpClient will not be closed
@@ -72,8 +78,9 @@ public class Client implements Closeable {
 		this(httpClient, false);
 	}
 
+
 	/**
-	 * Constructor for passing in a test parameter to allow for http calls
+	 * Constructor for passing in a test parameter to allow for http calls.
 	 *
 	 * @param test
 	 *            is a Bool
@@ -82,8 +89,9 @@ public class Client implements Closeable {
 		this(HttpClients.createDefault(), test);
 	}
 
+
 	/**
-	 * Constructor for passing in a  an httpClient and test parameter to allow for http calls
+	 * Constructor for passing in an httpClient and test parameter to allow for http calls.
 	 *
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
@@ -106,6 +114,8 @@ public class Client implements Closeable {
 	 *            (e.g. "/your/endpoint/path")
 	 * @param queryParams
 	 *            map of key, values representing the query parameters
+	 * @throws URISyntaxException
+	 *            in of a URI syntax error
 	 */
 	public URI buildUri(String baseUri, String endpoint, Map<String, String> queryParams) throws URISyntaxException {
 		URIBuilder builder = new URIBuilder();
@@ -135,11 +145,15 @@ public class Client implements Closeable {
 		return uri;
 	}
 
+
 	/**
 	 * Prepare a Response object from an API call via Apache's HTTP client.
 	 *
 	 * @param response
 	 *            from a call to a CloseableHttpClient
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response getResponse(CloseableHttpResponse response) throws IOException {
 		ResponseHandler<String> handler = new SendGridResponseHandler();
@@ -156,9 +170,18 @@ public class Client implements Closeable {
 		return new Response(statusCode, responseBody, responseHeaders);
 	}
 
+
 	/**
 	 * Make a GET request and provide the status code, response body and
 	 * response headers.
+	 * 
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response get(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -179,9 +202,18 @@ public class Client implements Closeable {
 		return executeApiCall(httpGet);
 	}
 
+
 	/**
 	 * Make a POST request and provide the status code, response body and
 	 * response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response post(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -206,9 +238,18 @@ public class Client implements Closeable {
 		return executeApiCall(httpPost);
 	}
 
+
 	/**
 	 * Make a PATCH request and provide the status code, response body and
 	 * response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response patch(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -233,9 +274,18 @@ public class Client implements Closeable {
 		return executeApiCall(httpPatch);
 	}
 
+
 	/**
 	 * Make a PUT request and provide the status code, response body and
 	 * response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response put(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -260,8 +310,17 @@ public class Client implements Closeable {
 		return executeApiCall(httpPut);
 	}
 
+
 	/**
 	 * Make a DELETE request and provide the status code and response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response delete(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -292,6 +351,16 @@ public class Client implements Closeable {
 		}
 	}
 
+
+	/**
+	 * Makes a call to the client API.
+	 *
+	 * @param httpPost 
+	 *            the request method object
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
+	 */
 	private Response executeApiCall(HttpRequestBase httpPost) throws IOException {
 		try {
 			CloseableHttpResponse serverResponse = httpClient.execute(httpPost);
@@ -305,8 +374,15 @@ public class Client implements Closeable {
 		}
 	}
 
+
 	/**
 	 * A thin wrapper around the HTTP methods.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response api(Request request) throws IOException {
 		try {
@@ -336,11 +412,25 @@ public class Client implements Closeable {
 		}
 	}
 
+
+	/**
+	 * Closes the http client.
+	 *
+	 * @throws IOException
+	 *            in case of a network error
+	 */	
 	@Override
 	public void close() throws IOException {
       	this.httpClient.close();
 	}
 
+
+	/**
+	 * Closes and finalizes the http client.
+	 *
+	 * @throws Throwable
+	 *            in case of an error
+	 */		
 	@Override
 	public void finalize() throws Throwable {
 		try {
