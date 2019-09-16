@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.apache.http.Header;
 import org.apache.http.HttpMessage;
-import org.apache.http.annotation.NotThreadSafe;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -28,7 +27,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 // Hack to get DELETE to accept a request body
-@NotThreadSafe
 class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	public static final String METHOD_NAME = "DELETE";
 
