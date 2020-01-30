@@ -1,14 +1,12 @@
 language: java
 matrix:
   include:
-    - os: linux
-      dist: precise
+    - name: 'OpenJDK 7'
       jdk: openjdk7
-    - os: linux
+    - name: 'OpenJDK 8'
       jdk: openjdk8
-    - os: linux
+    - name: 'Oracle JDK 8'
       jdk: oraclejdk8
-      name: 'Oracle JDK 8'
     - jdk: openjdk11
       name: 'OpenJDK 11'
   allow_failures:
