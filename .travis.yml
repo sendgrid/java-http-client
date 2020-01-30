@@ -11,6 +11,8 @@ matrix:
       name: 'OpenJDK 11'
   allow_failures:
     - name: 'Oracle JDK 8'
+    - name: 'OpenJDK 7'
+    - name: 'OpenJDK 11'
 before_script:
   - "./scripts/startPrism.sh &"
   - sleep 20
