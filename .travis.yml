@@ -13,9 +13,6 @@ matrix:
     - name: 'Oracle JDK 8'
     - name: 'OpenJDK 7'
     - name: 'OpenJDK 11'
-before_script:
-  - "./scripts/startPrism.sh &"
-  - sleep 20
 install:
   - mvn --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 after_success:

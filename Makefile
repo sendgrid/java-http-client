@@ -7,9 +7,5 @@ install:
 test:
 	mvn test
 
-test-integration:
-	./scripts/startPrism.sh &
-	sleep 5
-
 clean:
 	mvn clean
