@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [4.2.0] - 2017-10-30
+[2017-10-30] Version 4.2.0
+---------------------------
 ### Added
 - [Pull #22](https://github.com/sendgrid/java-http-client/pull/22): Allow setting both `apache http client` and `test` parameters
 - BIG thanks to [Maxim Novak](https://github.com/maximn) for the pull request!
