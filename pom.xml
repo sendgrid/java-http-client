@@ -7,7 +7,7 @@
         <version>7</version>
     </parent>
     <groupId>com.sendgrid</groupId>
-    <artifactId>http</artifactId>
+    <artifactId>java-http-client</artifactId>
     <packaging>jar</packaging>
     <name>A simple HTTP client</name>
     <description>HTTP REST client, simplified for Java</description>
