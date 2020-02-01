@@ -3,6 +3,37 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-02-01] Version 4.3.0
+--------------------------
+**Library - Feature**
+- [PR #25](https://github.com/sendgrid/java-http-client/pull/25): do not close or manage lifecycle of http-client passed in. Thanks to [@maxxedev](https://github.com/maxxedev)!
+- [PR #34](https://github.com/sendgrid/java-http-client/pull/34): Add close method to Client. Thanks to [@tsuyoshizawa](https://github.com/tsuyoshizawa)!
+- [PR #67](https://github.com/sendgrid/java-http-client/pull/67): Adding Docker support. Thanks to [@mithunsasidharan](https://github.com/mithunsasidharan)!
+
+**Library - Fix**
+- [PR #26](https://github.com/sendgrid/java-http-client/pull/26): use .equals to compare strings. Thanks to [@maxxedev](https://github.com/maxxedev)!
+- [PR #36](https://github.com/sendgrid/java-http-client/pull/36): No longer throwing IOExceptions on non 2xx response codes. Thanks to [@andy-trimble](https://github.com/andy-trimble)!
+- [PR #77](https://github.com/sendgrid/java-http-client/pull/77): Closes #72 Update Example.java. Thanks to [@AbdulDroid](https://github.com/AbdulDroid)!
+
+**Library - Chore**
+- [PR #54](https://github.com/sendgrid/java-http-client/pull/54): Added example file, updated .gitignore and README. Thanks to [@dhsrocha](https://github.com/dhsrocha)!
+- [PR #58](https://github.com/sendgrid/java-http-client/pull/58): added .codeclimate,yml for codeclimate run. Thanks to [@skshelar](https://github.com/skshelar)!
+- [PR #73](https://github.com/sendgrid/java-http-client/pull/73): Fixes #71. Thanks to [@huytranrjc](https://github.com/huytranrjc)!
+- [PR #76](https://github.com/sendgrid/java-http-client/pull/76): Update travis - add codecov. Thanks to [@pushkyn](https://github.com/pushkyn)!
+- [PR #92](https://github.com/sendgrid/java-http-client/pull/92): update LICENSE - bump year. Thanks to [@pushkyn](https://github.com/pushkyn)!
+- [PR #115](https://github.com/sendgrid/java-http-client/pull/115): add [openjdk11] to Travis build. Thanks to [@sullis](https://github.com/sullis)!
+- [PR #117](https://github.com/sendgrid/java-http-client/pull/117): Update transitive dependencies. Thanks to [@kebeda](https://github.com/kebeda)!
+- [PR #123](https://github.com/sendgrid/java-http-client/pull/123): prep the repo for automated releases. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Docs**
+- [PR #59](https://github.com/sendgrid/java-http-client/pull/59): Typos in CONTRIBUTING.md. Thanks to [@rkaranam](https://github.com/rkaranam)!
+- [PR #113](https://github.com/sendgrid/java-http-client/pull/113): Add our Developer Experience Engineer career opportunity to the READM…. Thanks to [@mptap](https://github.com/mptap)!
+
+**Library - Test**
+- [PR #66](https://github.com/sendgrid/java-http-client/pull/66): Test to check year in license file. Thanks to [@pushkyn](https://github.com/pushkyn)!
+- [PR #93](https://github.com/sendgrid/java-http-client/pull/93): removed tests that were testing for files that didnt exist, bumped gradle version to 4.10.2. Thanks to [@Strum355](https://github.com/Strum355)!
+
+
 [2017-10-30] Version 4.2.0
 ---------------------------
 ### Added
