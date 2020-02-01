@@ -40,7 +40,7 @@ All updates to this project is documented in our [CHANGELOG](https://github.com/
 ...
 dependencies {
   ...
-  compile 'com.sendgrid:java-http-client:4.2.0'
+  compile 'com.sendgrid:java-http-client:4.3.0'
 }
 
 repositories {
@@ -55,7 +55,7 @@ repositories {
 <dependency>
     <groupId>com.sendgrid</groupId>
     <artifactId>java-http-client</artifactId>
-    <version>4.2.0</version>
+    <version>4.3.0</version>
 </dependency>
 ```
 
@@ -139,7 +139,7 @@ cd examples
 javac -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example
 ```
 
-## Environment Variables 
+## Environment Variables
 
 You can do the following to create a .env file:
 
