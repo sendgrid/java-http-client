@@ -29,3 +29,5 @@ repo/
 
 # Environment files
 .env/*.*
+
+java-http-client.jar
