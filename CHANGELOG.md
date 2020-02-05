@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-02-05] Version 4.3.1
+--------------------------
+**Library - Docs**
+- [PR #126](https://github.com/sendgrid/java-http-client/pull/126): baseline all the templated markdown docs. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-02-01] Version 4.3.0
 --------------------------
 **Library - Feature**
