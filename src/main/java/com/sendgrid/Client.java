@@ -30,7 +30,6 @@ import org.apache.http.impl.client.HttpClients;
 /**
  * Hack to get DELETE to accept a request body.
  */
-@NotThreadSafe
 class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	public static final String METHOD_NAME = "DELETE";
 
