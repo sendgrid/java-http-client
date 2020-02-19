@@ -23,6 +23,7 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 
 <a name="announcements"></a>
 # Announcements
+**NEW:** If you're a software engineer who is passionate about #DeveloperExperience and/or #OpenSource, [this is an incredible opportunity to join our #DX team](https://sendgrid.com/careers/role/1421152/?gh_jid=1421152) as a Developer Experience Engineer and work with [@thinkingserious](https://github.com/thinkingserious) and [@aroach](https://github.com/aroach)! Tell your friends :)
 
 All updates to this project is documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
 
@@ -39,7 +40,7 @@ All updates to this project is documented in our [CHANGELOG](https://github.com/
 ...
 dependencies {
   ...
-  compile 'com.sendgrid:java-http-client:4.2.0'
+  compile 'com.sendgrid:java-http-client:4.3.1'
 }
 
 repositories {
@@ -54,7 +55,7 @@ repositories {
 <dependency>
     <groupId>com.sendgrid</groupId>
     <artifactId>java-http-client</artifactId>
-    <version>4.2.0</version>
+    <version>4.3.1</version>
 </dependency>
 ```
 
@@ -138,7 +139,7 @@ cd examples
 javac -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example
 ```
 
-## Environment Variables 
+## Environment Variables
 
 You can do the following to create a .env file:
 
