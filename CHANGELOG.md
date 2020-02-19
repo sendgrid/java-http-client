@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-02-19] Version 4.3.2
+--------------------------
+**Library - Chore**
+- [PR #111](https://github.com/sendgrid/java-http-client/pull/111): Update the Client file documentation. Thanks to [@vinifarias](https://github.com/vinifarias)!
+
+
 [2020-02-05] Version 4.3.1
 --------------------------
 **Library - Docs**
