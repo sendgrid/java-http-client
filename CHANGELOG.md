@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-03-04] Version 4.3.3
+--------------------------
+**Library - Chore**
+- [PR #127](https://github.com/sendgrid/java-http-client/pull/127): fix JDK Travis failures. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+
+
 [2020-02-19] Version 4.3.2
 --------------------------
 **Library - Chore**
