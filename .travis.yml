@@ -30,3 +30,11 @@ deploy:
       tags: true
       jdk: openjdk8
       branch: master
+
+notifications:
+  slack:
+    if: branch = master
+    on_success: never
+    on_failure: change
+    rooms:
+      - secure: K5X3v1dEP7Kg0MUYj8fMwyvEtQVG2iNr0URcEBfdWiH8XSST669p66TKbvo8e9PeZGfAkXJ+aqQBrqjxuNZAdMOOsGSVcIGkO8lOPK0EiiubggnDPUlaaJxm7+kV1IJJLstR5Xnj0t8Mt2adPQia+izG+4lWhTYSN1LtxKzwM0aDu3GnqA4uRRDZvQe44LhXAd3YbUTTZX5geWD7X1QS34iRnAWxmxGulBRoXSVfe0kf8womrz+wksgF/g6+yOxR+teKDogVUnBmBxpua+Z2lSMOLLPwjbRy8Y57M9F4DWpKH96WFQEEBFE0GBs+ygMkMbC5xQ6XEyEF9ArcF2IOxvroCM7wRXvEwnslcinoH11B6PTyUvjQrYB7KSMNpiJAi67f4G/LtoAMgy9lJklG/K7glG9oVSM8eREhGzFUyHsq+zwnCieKi57vb4+BYRoaiSy8Le1oH4sZ53DuXmrP/LStuAb8lP8svSzM8oAltC/NLxSCQt6tdS+CdX7Us/zaqcLtWdgvq1xqFhJiYv1iv3Odi37hRn7F/JhcDzN89BK9hbkCawR2MQ+ND41COzkhs0oEgVTj5gjYUJc9Y2Utac1ONvUF3x0NC3EyjSPiEKgtyYjaa5z+hPkAWR9LMqMQa1pKpfHXwkGsMeXJ4HisKl/L8U3rhccM0h5dkGRIPjU=
