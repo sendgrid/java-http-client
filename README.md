@@ -23,8 +23,6 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 
 <a name="announcements"></a>
 # Announcements
-**NEW:** If you're a software engineer who is passionate about #DeveloperExperience and/or #OpenSource, [this is an incredible opportunity to join our #DX team](https://sendgrid.com/careers/role/1421152/?gh_jid=1421152) as a Developer Experience Engineer and work with [@thinkingserious](https://github.com/thinkingserious) and [@aroach](https://github.com/aroach)! Tell your friends :)
-
 All updates to this project is documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
 
 <a name="installation"></a>
@@ -167,9 +165,11 @@ Quick links:
 <a name="about"></a>
 # About
 
-java-http-client is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
+java-http-client is maintained and funded by Twilio SendGrid, Inc. The names and logos for java-http-client are trademarks of Twilio SendGrid, Inc.
 
-java-http-client is maintained and funded by SendGrid, Inc. The names and logos for java-http-client are trademarks of SendGrid, Inc.
+If you need help installing or using the library, please check the [Twilio SendGrid Support Help Center](https://support.sendgrid.com).
+
+If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
 
 # License
 [The MIT License (MIT)](LICENSE.md)

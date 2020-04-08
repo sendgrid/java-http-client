@@ -28,10 +28,4 @@ Due to Oracle's JDK license, you must build this Docker image using the official
 
 For more detailed information, see [USAGE.md](https://github.com/sendgrid/java-http-client/blob/master/docker/USAGE.md).
 
-# About
-
-java-http-client is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
-
-java-http-client is maintained and funded by SendGrid, Inc. The names and logos for java-http-client are trademarks of SendGrid, Inc.
-
 ![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
