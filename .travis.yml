@@ -1,28 +1,41 @@
 language: java
-jdk:
-- oraclejdk8
-- openjdk8
-before_script:
-- chmod a+x gradlew
-script:
-- ./gradlew build check
-after_script:
-- "./scripts/s3upload.sh"
+before_install:
+  - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import --batch || true
+matrix:
+  include:
+    - jdk: openjdk7
+      dist: trusty
+    - jdk: openjdk8
+      dist: xenial
+    - jdk: openjdk11
+      dist: xenial
+    - jdk: oraclejdk7
+      dist: precise
+    - jdk: oraclejdk8
+      dist: trusty
+    - jdk: oraclejdk11
+      dist: trusty
+  allow_failures:
+    - jdk: openjdk7
+    - jdk: oraclejdk7
+install:
+  - mvn --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t $CODECOV_KEY
-env:
-  global:
-  - S3_POLICY: ewogICJleHBpcmF0aW9uIjogIjIxMDAtMDEtMDFUMTI6MDA6MDAuMDAwWiIsCiAgImNvbmRpdGlvbnMiOiBbCiAgICB7ImFjbCI6ICJwdWJsaWMtcmVhZCIgfSwKICAgIHsiYnVja2V0IjogInNlbmRncmlkLW9wZW4tc291cmNlIiB9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgInNlbmRncmlkLWphdmEvIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMjA0OCwgMjY4NDM1NDU2XSwKICAgIFsiZXEiLCAiJENvbnRlbnQtVHlwZSIsICJhcHBsaWNhdGlvbi96aXAiXQogIF0KfQo=
-  - secure: Iki1btwhG1nlyjnEMu90Oh/hoatFpPiiKkqpj7siLnlLp2xbBQ2003jRsn30I3Vujes2ugvzdlHqBJ9lDwRvfGrKXcLlRvYuDQ24N2YKquEiKHUxs+iMOzTQj6Sf64KL5O0aSZd1l5rjWgsQ0qqjHW9u3l5bUjqxzrhAI2Js37U=
-  - secure: Khi6a4z1lfZmDEDV738MOiWznRcTv5ILZUM+igEw2txX7PGX+B5909WridpAijTGiurJ6eda7jvsUgci8DTPQCXB18LD6N870hnPcSQkuI6zDAhKTx+w/ZsfPLWh28sP2CVzbqGdxaitZDKxRWaVmKnBZpyi8XI9UKjmyK2sjwE=
-  - secure: wKXAjjBgCLM4h++nP1xDQQtYU10JbwwynY0XB920SoQjI2Uu82cMPtkEXFWTpzyIS2hE5B3qvu75VHNdLqDUtek3e3lBg5k3SpYgGin20dg3SDEJrvA4vlvcApdQ132pMEWdDOVwzbXhm9+JTjALYbc3fX+VAQX1u5daPyeDGC4=
+deploy:
+  - provider: script
+    script: mvn clean deploy --settings .maven.xml -DskipTests=true -B -U -Prelease
+    skip_cleanup: true
+    on:
+      tags: true
+      jdk: openjdk8
+      branch: master
+
 notifications:
-  hipchat:
+  slack:
+    if: branch = master
+    on_pull_requests: false
+    on_success: never
+    on_failure: change
     rooms:
-      secure: j/23RY7nDWHMrpIcZiiwH3ORsWnmkZrMWKfv761RnJviYBQJy1cDEmvsyZy5w2AlE1w+CLNm+G7SI35N2eKZqtked+pWcx3nBN+bVmt7uRXmj16Oc5x2ztX6QWs3xFtUfGiA8t17q/LGRZlw9SiNI+SbP2wBHDJl66+KZWTppjbcmz/Rdax2OKj843Zx92bqsdAOjsdfwFm3B4isHQjE6hoS9u0MtIQ4KpkX4xOTJSF/r0RpIYWI37E41dDmdjLWIsYnj01P9dI+IQLN5OIfsaVQGWLVV9YkHjsEzOspJHBz8Mf40ADY76Exm/V+phRS2Q4tmAsAPXQ9lchS3uooat9z3RlfSxfIhVbjxTDLN7E/PMXCYAMKRU2FUqDYQoX3qSZBT9717Agz84T15S7l4g009bzzTgoHVpJjHVhNCRR1hWfaWFj7oRi8s0BDhQCclZ0ug+s//29LQWViSOvK7/prhJJwqDOD+GciVE4VDe1NFj7vhDTuIoWYU87D8zuZadLMz2jz1w67Oa1jJ1Ok64iFTqBS9AKQAfPKeQq9dZQ4SKMlS1Zyr8Y013ebp8CG01I8TZYQiBdbyhzYkAVSaz4x+Qh3n6WPJLJA0FUuQFcn3p1UQS/I16U2253F7w5t+7wU2DMj8k8k7ZN373FZc1ZWngX5ljR6nMoJNR73opg=
-    template:
-    - '<a href="https://travis-ci.org/sendgrid/%{repository}/builds/%{build_id}">%{repository}
-      Build %{build_number}</a> on branch <i>%{branch}</i> by %{author}: <strong>%{message}</strong>
-      <a href="https://github.com/sendgrid/%{repository}/commits/%{commit}">View on GitHub</a>'
-    format: html
-    notify: true
+      - secure: K5X3v1dEP7Kg0MUYj8fMwyvEtQVG2iNr0URcEBfdWiH8XSST669p66TKbvo8e9PeZGfAkXJ+aqQBrqjxuNZAdMOOsGSVcIGkO8lOPK0EiiubggnDPUlaaJxm7+kV1IJJLstR5Xnj0t8Mt2adPQia+izG+4lWhTYSN1LtxKzwM0aDu3GnqA4uRRDZvQe44LhXAd3YbUTTZX5geWD7X1QS34iRnAWxmxGulBRoXSVfe0kf8womrz+wksgF/g6+yOxR+teKDogVUnBmBxpua+Z2lSMOLLPwjbRy8Y57M9F4DWpKH96WFQEEBFE0GBs+ygMkMbC5xQ6XEyEF9ArcF2IOxvroCM7wRXvEwnslcinoH11B6PTyUvjQrYB7KSMNpiJAi67f4G/LtoAMgy9lJklG/K7glG9oVSM8eREhGzFUyHsq+zwnCieKi57vb4+BYRoaiSy8Le1oH4sZ53DuXmrP/LStuAb8lP8svSzM8oAltC/NLxSCQt6tdS+CdX7Us/zaqcLtWdgvq1xqFhJiYv1iv3Odi37hRn7F/JhcDzN89BK9hbkCawR2MQ+ND41COzkhs0oEgVTj5gjYUJc9Y2Utac1ONvUF3x0NC3EyjSPiEKgtyYjaa5z+hPkAWR9LMqMQa1pKpfHXwkGsMeXJ4HisKl/L8U3rhccM0h5dkGRIPjU=

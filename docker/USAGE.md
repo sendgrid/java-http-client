@@ -25,11 +25,4 @@ You can mount repositories in the `/mnt/java-http-client` and `/mnt/java-http-cl
 # Testing
 Testing is easy!  Run the container, `cd sendgrid`, and run `./gradlew test`.
 
-<a name="about"></a>
-# About
-
-java-http-client is guided and supported by the SendGrid [Developer Experience Team](mailto:dx@sendgrid.com).
-
-java-http-client is maintained and funded by SendGrid, Inc. The names and logos for java-http-client are trademarks of SendGrid, Inc.
-
 ![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
