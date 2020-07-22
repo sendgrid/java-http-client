@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-07-22] Version 4.3.4
+--------------------------
+**Library - Fix**
+- [PR #109](https://github.com/sendgrid/java-http-client/pull/109): correct the LICENSE.md link in pom.xml. Thanks to [@crweiner](https://github.com/crweiner)!
+
+**Library - Docs**
+- [PR #108](https://github.com/sendgrid/java-http-client/pull/108): Create a Use Cases Directory. Thanks to [@ajloria](https://github.com/ajloria)!
+
+
 [2020-03-04] Version 4.3.3
 --------------------------
 **Library - Chore**
