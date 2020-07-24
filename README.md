@@ -23,7 +23,7 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 
 <a name="announcements"></a>
 # Announcements
-All updates to this project is documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
+All updates to this project are documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
 
 <a name="installation"></a>
 # Installation
@@ -157,9 +157,10 @@ We encourage contribution to our projects please see our [CONTRIBUTING](https://
 
 Quick links:
 
-- [Feature Request](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#feature-request)
-- [Bug Reports](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#submit-a-bug-report)
-- [Improvements to the Codebase](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md#improvements-to-the-codebase)
+- [Feature Request](CONTRIBUTING.md#feature-request)
+- [Bug Reports](CONTRIBUTING.md#submit-a-bug-report)
+- [Improvements to the Codebase](CONTRIBUTING.md#improvements-to-the-codebase)
+- [Review Pull Requests](CONTRIBUTING.md#Code-Reviews)
 
 <a name="about"></a>
 # About
