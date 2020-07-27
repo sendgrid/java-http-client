@@ -23,6 +23,8 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 
 <a name="announcements"></a>
 # Announcements
+**The default branch name for this repository has been changed to `main` as of 07/27/2020.**
+
 All updates to this project are documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
 
 <a name="installation"></a>
