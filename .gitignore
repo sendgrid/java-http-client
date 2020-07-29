@@ -16,12 +16,18 @@ gradle.properties
 .gradle
 repo/
 
+# VSCode IDE
+.vscode
+
 # JetBrains IDEs
 *.iml
 **/.idea/
 /.settings/
 /.classpath
 /.project
+/bin
 
 # Environment files
 .env/*.*
+
+java-http-client.jar

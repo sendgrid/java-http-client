@@ -39,5 +39,4 @@ public class SendGridResponseHandler extends AbstractResponseHandler<String>{
     public String handleEntity(HttpEntity entity) throws IOException {
         return EntityUtils.toString(entity, StandardCharsets.UTF_8);
     }
-
 }

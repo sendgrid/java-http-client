@@ -1,5 +1,6 @@
 package com.sendgrid;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -10,8 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.Header;
-import org.apache.http.StatusLine;
-import org.apache.http.annotation.NotThreadSafe;
+import org.apache.http.HttpMessage;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -26,11 +26,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-// Hack to get DELETE to accept a request body
-@NotThreadSafe
+
+/**
+ * Hack to get DELETE to accept a request body.
+ */
 class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	public static final String METHOD_NAME = "DELETE";
 
+	@Override
 	public String getMethod() {
 		return METHOD_NAME;
 	}
@@ -41,23 +44,30 @@ class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 	}
 }
 
+
 /**
  * Class Client allows for quick and easy access any REST or REST-like API.
  */
-public class Client {
+public class Client implements Closeable {
 
 	private CloseableHttpClient httpClient;
 	private Boolean test;
+	private boolean createdHttpClient;
+
 
 	/**
 	 * Constructor for using the default CloseableHttpClient.
 	 */
 	public Client() {
-		this(false);
+		this.httpClient = HttpClients.createDefault();
+		this.test = false;
+		this.createdHttpClient = true;
 	}
 
+
 	/**
-	 * Constructor for passing in an httpClient.
+	 * Constructor for passing in an httpClient, typically for mocking. Passed-in httpClient will not be closed
+	 * by this Client.
 	 *
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
@@ -66,8 +76,9 @@ public class Client {
 		this(httpClient, false);
 	}
 
+
 	/**
-	 * Constructor for passing in a test parameter to allow for http calls
+	 * Constructor for passing in a test parameter to allow for http calls.
 	 *
 	 * @param test
 	 *            is a Bool
@@ -76,8 +87,9 @@ public class Client {
 		this(HttpClients.createDefault(), test);
 	}
 
+
 	/**
-	 * Constructor for passing in a  an httpClient and test parameter to allow for http calls
+	 * Constructor for passing in an httpClient and test parameter to allow for http calls.
 	 *
 	 * @param httpClient
 	 *            an Apache CloseableHttpClient
@@ -87,6 +99,7 @@ public class Client {
 	public Client(CloseableHttpClient httpClient, Boolean test) {
 		this.httpClient = httpClient;
 		this.test = test;
+		this.createdHttpClient = true;
 	}
 
 
@@ -99,10 +112,12 @@ public class Client {
 	 *            (e.g. "/your/endpoint/path")
 	 * @param queryParams
 	 *            map of key, values representing the query parameters
+	 * @throws URISyntaxException
+	 *            in of a URI syntax error
 	 */
 	public URI buildUri(String baseUri, String endpoint, Map<String, String> queryParams) throws URISyntaxException {
 		URIBuilder builder = new URIBuilder();
-		URI uri;
+		URI uri = null;
 
 		if (this.test == true) {
 			builder.setScheme("http");
@@ -128,19 +143,21 @@ public class Client {
 		return uri;
 	}
 
+
 	/**
 	 * Prepare a Response object from an API call via Apache's HTTP client.
 	 *
 	 * @param response
 	 *            from a call to a CloseableHttpClient
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response getResponse(CloseableHttpResponse response) throws IOException {
 		ResponseHandler<String> handler = new SendGridResponseHandler();
-		String responseBody = "";
+		String responseBody = handler.handleResponse(response);
 
 		int statusCode = response.getStatusLine().getStatusCode();
-
-		responseBody = handler.handleResponse(response);
 
 		Header[] headers = response.getAllHeaders();
 		Map<String, String> responseHeaders = new HashMap<String, String>();
@@ -151,9 +168,18 @@ public class Client {
 		return new Response(statusCode, responseBody, responseHeaders);
 	}
 
+
 	/**
 	 * Make a GET request and provide the status code, response body and
 	 * response headers.
+	 * 
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response get(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -174,9 +200,18 @@ public class Client {
 		return executeApiCall(httpGet);
 	}
 
+
 	/**
 	 * Make a POST request and provide the status code, response body and
 	 * response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response post(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -196,16 +231,23 @@ public class Client {
 		}
 
 		httpPost.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
-		if (request.getBody() != "") {
-			httpPost.setHeader("Content-Type", "application/json");
-		}
+		writeContentTypeIfNeeded(request, httpPost);
 
 		return executeApiCall(httpPost);
 	}
 
+
 	/**
 	 * Make a PATCH request and provide the status code, response body and
 	 * response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response patch(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -225,15 +267,23 @@ public class Client {
 		}
 
 		httpPatch.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
-		if (request.getBody() != "") {
-			httpPatch.setHeader("Content-Type", "application/json");
-		}
+		writeContentTypeIfNeeded(request, httpPatch);
+
 		return executeApiCall(httpPatch);
 	}
+
 
 	/**
 	 * Make a PUT request and provide the status code, response body and
 	 * response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response put(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -253,15 +303,22 @@ public class Client {
 		}
 
 		httpPut.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
-		if (request.getBody() != "") {
-			httpPut.setHeader("Content-Type", "application/json");
-		}
+		writeContentTypeIfNeeded(request, httpPut);
 
 		return executeApiCall(httpPut);
 	}
 
+
 	/**
 	 * Make a DELETE request and provide the status code and response headers.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws URISyntaxException
+	 *            in case of a URI syntax error
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response delete(Request request) throws URISyntaxException, IOException {
 		URI uri = null;
@@ -281,23 +338,32 @@ public class Client {
 		}
 
 		httpDelete.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
-		if (request.getBody() != "") {
-			httpDelete.setHeader("Content-Type", "application/json");
-		}
+		writeContentTypeIfNeeded(request, httpDelete);
 
 		return executeApiCall(httpDelete);
 	}
 
+	private void writeContentTypeIfNeeded(Request request, HttpMessage httpMessage) {
+		if (!"".equals(request.getBody())) {
+			httpMessage.setHeader("Content-Type", "application/json");
+		}
+	}
+
+
+	/**
+	 * Makes a call to the client API.
+	 *
+	 * @param httpPost 
+	 *            the request method object
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
+	 */
 	private Response executeApiCall(HttpRequestBase httpPost) throws IOException {
 		try {
 			CloseableHttpResponse serverResponse = httpClient.execute(httpPost);
 			try {
-				Response response = getResponse(serverResponse);
-				if(response.getStatusCode() >= 300) {
-					//throwing IOException here to not break API behavior.
-					throw new IOException("Request returned status Code "+response.getStatusCode()+"Body:"+response.getBody());
-				}
-				return response;
+				return getResponse(serverResponse);
 			} finally {
 				serverResponse.close();
 			}
@@ -306,8 +372,15 @@ public class Client {
 		}
 	}
 
+
 	/**
 	 * A thin wrapper around the HTTP methods.
+	 *
+	 * @param request 
+	 *            the request object
+	 * @throws IOException
+	 *            in case of a network error
+	 * @return the response object
 	 */
 	public Response api(Request request) throws IOException {
 		try {
@@ -337,10 +410,29 @@ public class Client {
 		}
 	}
 
+
+	/**
+	 * Closes the http client.
+	 *
+	 * @throws IOException
+	 *            in case of a network error
+	 */	
+	@Override
+	public void close() throws IOException {
+      	this.httpClient.close();
+	}
+
+
+	/**
+	 * Closes and finalizes the http client.
+	 *
+	 * @throws Throwable
+	 *            in case of an error
+	 */		
 	@Override
 	public void finalize() throws Throwable {
 		try {
-			this.httpClient.close();
+			close();
 		} catch(IOException e) {
 			throw new Throwable(e.getMessage());
 		} finally {
