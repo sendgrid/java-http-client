@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-08-05] Version 4.3.5
+--------------------------
+**Library - Docs**
+- [PR #86](https://github.com/sendgrid/java-http-client/pull/86): Moved usage and enviorment variables to USAGE.md. Thanks to [@rareinator](https://github.com/rareinator)!
+
+
 [2020-07-22] Version 4.3.4
 --------------------------
 **Library - Fix**
