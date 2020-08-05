@@ -1,13 +1,13 @@
 FROM store/oracle/serverjre:8
 
-ENV OAI_SPEC_URL="https://raw.githubusercontent.com/sendgrid/sendgrid-oai/master/oai_stoplight.json"
+ENV OAI_SPEC_URL="https://raw.githubusercontent.com/sendgrid/sendgrid-oai/HEAD/oai_stoplight.json"
 
 RUN yum install -y git 
 
 WORKDIR /root
 
 # install Prism
-ADD https://raw.githubusercontent.com/stoplightio/prism/master/install.sh install.sh
+ADD https://raw.githubusercontent.com/stoplightio/prism/HEAD/install.sh install.sh
 RUN chmod +x ./install.sh && sync && \
     ./install.sh && \
     rm ./install.sh
