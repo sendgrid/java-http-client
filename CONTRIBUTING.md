@@ -50,7 +50,7 @@ We welcome direct contributions to the java-http-client code base. Thank you!
 ##### Prerequisites #####
 
 - Java version Oracle JDK 8 or OpenJDK 7
-- Please see [build.gradle](https://github.com/sendgrid/java-http-client/blob/HEAD/build.gradle)
+- Please see [build.gradle](build.gradle)
 
 ##### Initial setup: #####
 
@@ -61,7 +61,7 @@ cd java-http-client
 
 ##### Execute: #####
 
-See the [examples folder](https://github.com/sendgrid/java-http-client/tree/HEAD/examples) to get started quickly.
+See the [examples folder](examples) to get started quickly.
 
 You will need to setup the following environment to use the SendGrid example:
 
@@ -105,9 +105,9 @@ Provides a standard interface to an API's response.
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in [`java-http-client/src/test/java/com/sendgrid`](https://github.com/sendgrid/java-http-client/tree/HEAD/src/test/java/com/sendgrid).
+All test files are in [`java-http-client/src/test/java/com/sendgrid`](src/test/java/com/sendgrid).
 
-For the purposes of contributing to this repo, please update the [`ClientTest.java`](https://github.com/sendgrid/java-http-client/blob/HEAD/src/test/java/com/sendgrid/ClientTest.java) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`ClientTest.java`](src/test/java/com/sendgrid/ClientTest.java) file with unit tests as you modify the code.
 
 
 Run the tests:
