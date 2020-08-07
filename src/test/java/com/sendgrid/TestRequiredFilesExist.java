@@ -12,7 +12,7 @@ public class TestRequiredFilesExist {
         new File("./docker/Docker").exists();
         assertTrue(dockerExists);
     }
-    
+
     /* // ./docker-compose.yml or ./docker/docker-compose.yml
     @Test public void checkDockerComposeExists() {
         boolean dockerComposeExists = new File("./docker-compose.yml").exists() ||
@@ -23,7 +23,7 @@ public class TestRequiredFilesExist {
     @Test public void checkEnvSampleExists() {
         assertTrue(new File("./.env_sample").exists());
     } */
-    
+
     // ./.gitignore
     @Test public void checkGitIgnoreExists() {
         assertTrue(new File("./.gitignore").exists());
@@ -54,9 +54,9 @@ public class TestRequiredFilesExist {
         assertTrue(new File("./CONTRIBUTING.md").exists());
     }
 
-    // ./.github/ISSUE_TEMPLATE
+    // ./ISSUE_TEMPLATE.md
     @Test public void checkIssuesTemplateExists() {
-        assertTrue(new File("./.github/ISSUE_TEMPLATE").exists());
+        assertTrue(new File("./ISSUE_TEMPLATE.md").exists());
     }
 
     // ./LICENSE.md
@@ -64,9 +64,9 @@ public class TestRequiredFilesExist {
         assertTrue(new File("./LICENSE.md").exists());
     }
 
-    // ./.github/PULL_REQUEST_TEMPLATE
+    // ./PULL_REQUEST_TEMPLATE.md
     @Test public void checkPullRequestExists() {
-        assertTrue(new File("./.github/PULL_REQUEST_TEMPLATE").exists());
+        assertTrue(new File("./PULL_REQUEST_TEMPLATE.md").exists());
     }
 
     // ./README.md

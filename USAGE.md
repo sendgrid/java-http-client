@@ -17,3 +17,11 @@ mvn package
 cd examples
 javac -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example.java && java -classpath {path_to}/sendgrid-java-http-client-4.0.0-jar.jar:. Example
 ```
+
+## Environment Variables 
+
+You can do the following to create a .env file:
+
+```cp .env_example .env```
+
+Then, just add your API Key into your .env file.
