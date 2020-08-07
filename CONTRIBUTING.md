@@ -50,7 +50,7 @@ We welcome direct contributions to the java-http-client code base. Thank you!
 ##### Prerequisites #####
 
 - Java version Oracle JDK 8 or OpenJDK 7
-- Please see [build.gradle](build.gradle)
+- Please see [pom.xml](pom.xml)
 
 ##### Initial setup: #####
 

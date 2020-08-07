@@ -67,7 +67,7 @@ repositories {
 
 ## Dependencies
 
-- Please see the [build.gradle file](build.gradle)
+- Please see the [pom.xml file](pom.xml)
 
 <a name="quick-start"></a>
 # Quick Start
