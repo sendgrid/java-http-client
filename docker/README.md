@@ -26,6 +26,6 @@ Due to Oracle's JDK license, you must build this Docker image using the official
    $ docker run -it -v /path/to/cool-java-http-client:/mnt/java-http-client sendgrid/java-http-client
    ```
 
-For more detailed information, see [USAGE.md](../docker/USAGE.md).
+For more detailed information, see [USAGE.md](USAGE.md).
 
 ![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
