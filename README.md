@@ -32,7 +32,7 @@ All updates to this project are documented in our [CHANGELOG](https://github.com
 
 ## Prerequisites
 
-- Java version Oracle JDK 8 or OpenJDK 7
+- Java 8 or 11
 
 ## Install via Maven w/ Gradle
 
