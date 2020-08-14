@@ -50,7 +50,7 @@ We welcome direct contributions to the java-http-client code base. Thank you!
 ##### Prerequisites #####
 
 - Java 8 or 11
-- Please see [build.gradle](https://github.com/sendgrid/java-http-client/blob/master/build.gradle)
+- Please see [pom.xml](pom.xml)
 
 ##### Initial setup: #####
 
@@ -61,7 +61,7 @@ cd java-http-client
 
 ##### Execute: #####
 
-See the [examples folder](https://github.com/sendgrid/java-http-client/tree/master/examples) to get started quickly.
+See the [examples folder](examples) to get started quickly.
 
 You will need to setup the following environment to use the SendGrid example:
 
@@ -105,9 +105,9 @@ Provides a standard interface to an API's response.
 
 All PRs require passing tests before the PR will be reviewed.
 
-All test files are in [`java-http-client/src/test/java/com/sendgrid`](https://github.com/sendgrid/java-http-client/tree/master/src/test/java/com/sendgrid).
+All test files are in [`java-http-client/src/test/java/com/sendgrid`](src/test/java/com/sendgrid).
 
-For the purposes of contributing to this repo, please update the [`ClientTest.java`](https://github.com/sendgrid/java-http-client/blob/master/src/test/java/com/sendgrid/ClientTest.java) file with unit tests as you modify the code.
+For the purposes of contributing to this repo, please update the [`ClientTest.java`](src/test/java/com/sendgrid/ClientTest.java) file with unit tests as you modify the code.
 
 
 Run the tests:
@@ -168,7 +168,7 @@ Please run your code through:
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
 
    ```bash
-   git pull [--rebase] upstream master
+   git pull [--rebase] upstream main
    ```
 
 6. Push your topic branch up to your fork:
@@ -178,7 +178,7 @@ Please run your code through:
    ```
 
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-    with a clear title and description against the `master` branch. All tests must be passing before we will review the PR.
+    with a clear title and description against the `main` branch. All tests must be passing before we will review the PR.
 
 ## Code Reviews
 If you can, please look at open PRs and review them. Give feedback and help us merge these PRs much faster! If you don't know how, GitHub has some great [information on how to review a Pull Request](https://help.github.com/articles/about-pull-request-reviews/).

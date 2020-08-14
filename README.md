@@ -1,6 +1,6 @@
-![SendGrid Logo](https://uiux.s3.amazonaws.com/2016-logos/email-logo%402x.png)
+![SendGrid Logo](twilio_sendgrid_logo.png)
 
-[![Build Status](https://travis-ci.org/sendgrid/java-http-client.svg?branch=master)](https://travis-ci.org/sendgrid/java-http-client)
+[![Build Status](https://travis-ci.org/sendgrid/java-http-client.svg?branch=main)](https://travis-ci.org/sendgrid/java-http-client)
 [![Maven Central](https://img.shields.io/maven-central/v/com.sendgrid/java-http-client.svg)](http://mvnrepository.com/artifact/com.sendgrid/java-http-client)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
@@ -25,7 +25,7 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 # Announcements
 **The default branch name for this repository has been changed to `main` as of 07/27/2020.**
 
-All updates to this project are documented in our [CHANGELOG](https://github.com/sendgrid/java-http-client/blob/master/CHANGELOG.md).
+All updates to this project are documented in our [CHANGELOG](CHANGELOG.md).
 
 <a name="installation"></a>
 # Installation
@@ -67,7 +67,7 @@ repositories {
 
 ## Dependencies
 
-- Please see the [build.gradle file](https://github.com/sendgrid/java-http-client/blob/master/build.gradle)
+- Please see the [pom.xml file](pom.xml)
 
 <a name="quick-start"></a>
 # Quick Start
@@ -124,7 +124,7 @@ If you are interested in the future direction of this project, please take a loo
 <a name="contribute"></a>
 # How to Contribute
 
-We encourage contribution to our projects please see our [CONTRIBUTING](https://github.com/sendgrid/java-http-client/blob/master/CONTRIBUTING.md) guide for details.
+We encourage contribution to our projects please see our [CONTRIBUTING](CONTRIBUTING.md) guide for details.
 
 Quick links:
 
