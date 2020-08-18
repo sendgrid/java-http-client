@@ -1,38 +1,54 @@
 # How To Contribute to Twilio SendGrid Repositories via GitHub
-
 Contributing to the Twilio SendGrid repositories is easy! All you need to do is find an open issue (see the bottom of this page for a list of repositories containing open issues), fix it and submit a pull request. Once you have submitted your pull request, the team can easily review it before it is merged into the repository.
 
 To make a pull request, follow these steps:
 
 1. Log into GitHub. If you do not already have a GitHub account, you will have to create one in order to submit a change. Click the Sign up link in the upper right-hand corner to create an account. Enter your username, password, and email address. If you are an employee of Twilio SendGrid, please use your full name with your GitHub account and enter Twilio SendGrid as your company so we can easily identify you.
 
-<img src="https://github.com/sendgrid/docs/blob/develop/static/img/docs_signup.png" width="800" height="500">
+<img src="/static/img/github-sign-up.png" width="800">
 
-Once signed in, go to the repository you want to modify. There are two different options: either modifying the file directly on the GitHub website (useful when it is a single file) or forking the repository.
+2. __[Fork](https://help.github.com/fork-a-repo/)__ the [java-http-client](https://github.com/sendgrid/java-http-client) repository:
 
-### Single file modification
+<img src="/static/img/github-fork.png" width="800">
 
-2. Once you are viewing a file you want to modify in GitHub, click the pencil icon to begin editing:
+3. __Clone__  your fork via the following commands:
 
-<img src="https://github.com/sendgrid/docs/blob/develop/static/img/docs_edit_github.png" width="800" height="500">
+```bash
+# Clone your fork of the repo into the current directory
+git clone https://github.com/your_username/java-http-client
+# Navigate to the newly cloned directory
+cd java-http-client
+# Assign the original repo to a remote called "upstream"
+git remote add upstream https://github.com/sendgrid/java-http-client
+```
 
-3. Once you have made your changes, you will be given the option of creating a new branch in a Pull Request. This is a request to create a copy, or branch, of the original Docs but with your changes. Once your changes are approved, your branch will then be merged back into the original. 
+> Don't forget to replace *your_username* in the URL by your real GitHub username.
 
-4. To create a Pull Request, you’ll have to fill out a Commit Changes form. Follow the built-in template and provide information about any changes you have made to the page. Leave the default branch option and name.
+4. __Create a new topic branch__ (off the main project development branch) to contain your feature, change, or fix:
 
-5. When done, click **Propose file change**. The team will be notified of your request, and will be able to process it.
+```bash
+git checkout -b <topic-branch-name>
+```
 
-### Forking the repository
+5. __Commit your changes__ in logical chunks.
 
-2. Once you are viewing the repository, click the **Fork** button (top right corner) to create a new fork. Doing so will create a fork of the repository that you will be able to access from your profile.
+Please adhere to these [git commit message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html) or your code is unlikely be merged into the main project. Use Git's [interactive rebase](https://help.github.com/articles/interactive-rebase) feature to tidy up your commits before making them public. Probably you will also have to create tests (if needed) or create or update the example code that demonstrates the functionality of this change to the code.
 
-3. Make changes to the fork, either by using the web interface as described above or by [cloning](https://help.github.com/articles/cloning-a-repository/) your repository.
+6. __Locally merge (or rebase)__ the upstream development branch into your topic branch:
 
-4. Once you have made your changes, if they have been made in your local machine, you will need to commit the changes and push them to GitHub.
+```bash
+git pull [--rebase] upstream main
+```
 
-5. Create a [pull request](https://help.github.com/articles/creating-a-pull-request/#changing-the-branch-range-and-destination-repository).
+7. __Push__ your topic branch up to your fork:
 
-### Important notice
+```bash
+git push origin <topic-branch-name>
+```
+
+8. __[Open a Pull Request](https://help.github.com/articles/creating-a-pull-request/#changing-the-branch-range-and-destination-repository/)__ with a clear title and description against the `main` branch. All tests must be passing before we will review the PR.
+
+## Important notice
 
 Before creating a pull request, make sure that you respect the repository's constraints regarding contributions. You can find them in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
@@ -58,8 +74,6 @@ Before creating a pull request, make sure that you respect the repository's cons
 * [Java HTTP Client](https://github.com/sendgrid/java-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
 * [Ruby HTTP Client](https://github.com/sendgrid/ruby-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
 * [Go HTTP Client](https://github.com/sendgrid/rest/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
-* [Node.js HTTP Client](https://github.com/sendgrid/nodejs-http-client/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
-* [Open Source Data Collector](https://github.com/sendgrid/open-source-library-data-collector/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
 * [Open API Definition](https://github.com/sendgrid/sendgrid-oai/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
 * [DX Automator](https://github.com/sendgrid/dx-automator/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
 * [Documentation](https://github.com/sendgrid/docs/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22difficulty%3A+easy%22+label%3A%22status%3A+help+wanted%22)
