@@ -40,7 +40,7 @@ All updates to this project are documented in our [CHANGELOG](CHANGELOG.md).
 ...
 dependencies {
   ...
-  compile 'com.sendgrid:java-http-client:4.3.5'
+  compile 'com.sendgrid:java-http-client:4.3.6'
 }
 
 repositories {
@@ -55,7 +55,7 @@ repositories {
 <dependency>
     <groupId>com.sendgrid</groupId>
     <artifactId>java-http-client</artifactId>
-    <version>4.3.5</version>
+    <version>4.3.6</version>
 </dependency>
 ```
 
