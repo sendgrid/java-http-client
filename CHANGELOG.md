@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2020-08-19] Version 4.3.6
+--------------------------
+**Library - Chore**
+- [PR #128](https://github.com/sendgrid/java-http-client/pull/128): update GitHub branch references to use HEAD. Thanks to [@thinkingserious](https://github.com/thinkingserious)!
+
+**Library - Docs**
+- [PR #97](https://github.com/sendgrid/java-http-client/pull/97): Correcting *.md files using Grammarly. Thanks to [@pushkyn](https://github.com/pushkyn)!
+- [PR #101](https://github.com/sendgrid/java-http-client/pull/101): Add first timers file. Thanks to [@Varpie](https://github.com/Varpie)!
+
+
 [2020-08-05] Version 4.3.5
 --------------------------
 **Library - Docs**
