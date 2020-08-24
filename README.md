@@ -16,7 +16,6 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 * [Installation](#installation)
 * [Quick Start](#quick-start)
 * [Usage](./USAGE.md)
-* [Roadmap](#roadmap)
 * [How to Contribute](#contribute)
 * [About](#about)
 * [License](#license)
@@ -115,11 +114,6 @@ try {
     throw ex;
 }
 ```
-
-<a name="roadmap"></a>
-# Roadmap
-
-If you are interested in the future direction of this project, please take a look at our [milestones](https://github.com/sendgrid/java-http-client/milestones). We would love to hear your feedback.
 
 <a name="contribute"></a>
 # How to Contribute
