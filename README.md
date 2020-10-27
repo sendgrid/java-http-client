@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sendgrid/java-http-client.svg?branch=main)](https://travis-ci.org/sendgrid/java-http-client)
 [![Maven Central](https://img.shields.io/maven-central/v/com.sendgrid/java-http-client.svg)](http://mvnrepository.com/artifact/com.sendgrid/java-http-client)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Twitter Follow](https://img.shields.io/twitter/follow/sendgrid.svg?style=social&label=Follow)](https://twitter.com/sendgrid)
 [![GitHub contributors](https://img.shields.io/github/contributors/sendgrid/java-http-client.svg)](https://github.com/sendgrid/java-http-client/graphs/contributors)
 
@@ -137,4 +137,4 @@ If you need help installing or using the library, please check the [Twilio SendG
 If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
 
 # License
-[The MIT License (MIT)](LICENSE.md)
+[The MIT License (MIT)](LICENSE)
