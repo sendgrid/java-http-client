@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2021-05-19] Version 4.3.7
+--------------------------
+**Library - Chore**
+- [PR #131](https://github.com/sendgrid/java-http-client/pull/131): Bump org.apache.httpcomponents.httpclient from 4.5.12 to 4.5.13. Thanks to [@akunzai](https://github.com/akunzai)!
+
+
 [2020-08-19] Version 4.3.6
 --------------------------
 **Library - Chore**
