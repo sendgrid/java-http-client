@@ -6,6 +6,9 @@ install:
 	mvn clean install -DskipTests=true -Dgpg.skip -B
 	cp target/java-http-client-$(VERSION).jar java-http-client.jar
 
+package:
+	mvn package -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B
+
 test:
 	mvn test
 
