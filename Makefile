@@ -1,4 +1,4 @@
-.PHONY: install test test-integration clean
+.PHONY: install package test test-integration clean
 
 VERSION := $(shell mvn help:evaluate -Dexpression=project.version --batch-mode | grep -e '^[^\[]')
 install:
