@@ -100,6 +100,8 @@ try {
 request.addHeader("Authorization", "Bearer YOUR_API_KEY");
 request.addQueryParam("limit", "100");
 request.addQueryParam("offset", "0");
+// Will be parsed to categories=cake&categories=pie&categories=baking
+request.addQueryParam("categories", "cake&pie&baking");
 request.setBody("{\"name\": \"My Request Body\"}");
 request.setMethod(Method.POST);
 String param = "param";

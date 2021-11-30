@@ -9,6 +9,8 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 
 import org.apache.http.Header;
 import org.apache.http.HttpMessage;
@@ -129,8 +131,19 @@ public class Client implements Closeable {
 		builder.setPath(endpoint);
 
 		if (queryParams != null) {
+			String multiValueDelimiter = "&";
+
 			for (Map.Entry<String, String> entry : queryParams.entrySet()) {
-				builder.setParameter(entry.getKey(), entry.getValue());
+				String value = entry.getValue();
+
+				if (value.indexOf(multiValueDelimiter) != -1) {
+					List<String> values = Arrays.asList(value.split(multiValueDelimiter));
+					for (String val : values) {
+						builder.addParameter(entry.getKey(), val);
+					}
+				} else {
+					builder.setParameter(entry.getKey(), entry.getValue());
+				}
 			}
 		}
 
