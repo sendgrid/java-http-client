@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
   <name>A simple HTTP client</name>
   <description>HTTP REST client, simplified for Java</description>
-  <version>4.3.7</version>
+  <version>4.3.8</version>
   <url>https://github.com/sendgrid/java-http-client</url>
   <licenses>
     <license>
@@ -24,7 +24,7 @@
     <url>https://github.com/sendgrid/java-http-client</url>
     <connection>scm:git:git@github.com:sendgrid/java-http-client.git</connection>
     <developerConnection>scm:git:git@github.com:sendgrid/java-http-client.git</developerConnection>
-    <tag>4.3.7</tag>
+    <tag>4.3.8</tag>
   </scm>
   <profiles>
     <profile>
