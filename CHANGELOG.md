@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2021-12-01] Version 4.3.8
+--------------------------
+**Library - Chore**
+- [PR #135](https://github.com/sendgrid/java-http-client/pull/135): fix pom for release. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+- [PR #133](https://github.com/sendgrid/java-http-client/pull/133): migrate to github actions. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+
 [2021-05-19] Version 4.3.7
 --------------------------
 **Library - Chore**
