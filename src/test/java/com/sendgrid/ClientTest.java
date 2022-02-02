@@ -33,8 +33,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,6 +64,7 @@ public class ClientTest extends Mockito {
     Map<String,String> queryParams = new HashMap<String,String>();
     queryParams.put("test1", "1");
     queryParams.put("test2", "2");
+    queryParams.put("test3", "3&4&5");
     try {
       uri = client.buildUri(baseUri, endpoint, queryParams);
     } catch (URISyntaxException ex) {
@@ -70,10 +73,23 @@ public class ClientTest extends Mockito {
       Assert.assertTrue(errors.toString(), false);
     }
 
-    String url = uri.toString();
-    System.out.println(url);
-    Assert.assertTrue(url.equals("https://api.test.com/endpoint?test2=2&test1=1") ||
-           url.equals("https://api.test.com/endpoint?test1=1&test2=2"));
+    URL url = null;
+    try {
+      url = uri.toURL();
+    } catch (MalformedURLException ex) {
+      StringWriter errors = new StringWriter();
+      ex.printStackTrace(new PrintWriter(errors));
+      Assert.assertTrue(errors.toString(), false);
+    }
+
+    Assert.assertTrue(url.getProtocol().equals("https"));
+    Assert.assertTrue(url.getHost().equals("api.test.com"));
+    Assert.assertTrue(url.getPath().equals("/endpoint"));
+    Assert.assertTrue(this.queryParamHasCorrectValue(url, "test1", "1"));
+    Assert.assertTrue(this.queryParamHasCorrectValue(url, "test2", "2"));
+    Assert.assertTrue(this.queryParamHasCorrectValue(url, "test3", "3"));
+    Assert.assertTrue(this.queryParamHasCorrectValue(url, "test3", "4"));
+    Assert.assertTrue(this.queryParamHasCorrectValue(url, "test3", "5"));
   }
 
   @Test
@@ -173,5 +189,9 @@ public class ClientTest extends Mockito {
   @Test
   public void testDelete() {
     testMethod(Method.DELETE, 204);
+  }
+
+  private boolean queryParamHasCorrectValue(URL url, String key, String value) {
+    return url.getQuery().indexOf(key + "=" + value) != -1;
   }
 }
