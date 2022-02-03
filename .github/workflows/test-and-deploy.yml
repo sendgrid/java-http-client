@@ -55,6 +55,7 @@ jobs:
       - name: Create GitHub Release
         uses: sendgrid/dx-automator/actions/release@main
         with:
+          assets: java-http-client.jar
           footer: '**[Maven](https://mvnrepository.com/artifact/com.sendgrid/java-http-client/${version})**'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
