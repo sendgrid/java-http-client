@@ -31,7 +31,7 @@ All updates to this project are documented in our [CHANGELOG](CHANGELOG.md).
 
 ## Prerequisites
 
-- Java 8 or 11
+- Java 8, 11, or 17
 
 ## Install via Maven w/ Gradle
 
