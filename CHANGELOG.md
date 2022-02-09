@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2022-02-09] Version 4.4.0
+--------------------------
+**Library - Chore**
+- [PR #139](https://github.com/sendgrid/java-http-client/pull/139): upgrade supported language versions. Thanks to [@childish-sambino](https://github.com/childish-sambino)!
+- [PR #138](https://github.com/sendgrid/java-http-client/pull/138): add gh release to workflow. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+- [PR #137](https://github.com/sendgrid/java-http-client/pull/137): merge test and deploy workflows. Thanks to [@shwetha-manvinkurke](https://github.com/shwetha-manvinkurke)!
+
+**Library - Feature**
+- [PR #134](https://github.com/sendgrid/java-http-client/pull/134): Support multiple duplicate queryparams. Thanks to [@mjjs](https://github.com/mjjs)!
+
+
 [2022-01-12] Version 4.3.9
 --------------------------
 **Library - Chore**
