@@ -104,6 +104,16 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   <dependencies>
+    <!--
+      TODO:
+        Remove after OSSRH-66257, NEXUS-26993 are fixed,
+        possibly via https://github.com/sonatype/nexus-maven-plugins/pull/91
+    -->
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.15</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit-dep</artifactId>
