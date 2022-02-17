@@ -1,4 +1,4 @@
-.PHONY: install package test test-integration clean
+.PHONY: install package test update-deps test-integration clean
 
 VERSION := $(shell mvn help:evaluate -Dexpression=project.version --batch-mode | grep -e '^[^\[]')
 install:
@@ -12,6 +12,9 @@ package:
 
 test:
 	mvn test
+
+update-deps:
+	mvn versions:use-latest-releases versions:commit -DallowMajorUpdates=false
 
 clean:
 	mvn clean
