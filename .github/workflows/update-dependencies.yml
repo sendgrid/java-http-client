@@ -19,15 +19,15 @@ jobs:
       - name: Checkout java-http-client
         uses: actions/checkout@v2
 
-      - name: Updating semver dependencies
-        run: make update-deps
-
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
           cache: 'maven'
+
+      - name: Updating semver dependencies
+        run: make update-deps
 
       - run: mvn install -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
 
