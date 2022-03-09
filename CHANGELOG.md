@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2022-03-09] Version 4.5.0
+--------------------------
+**Library - Chore**
+- [PR #142](https://github.com/sendgrid/java-http-client/pull/142): push Datadog Release Metric upon deploy success. Thanks to [@eshanholtz](https://github.com/eshanholtz)!
+
+**Library - Feature**
+- [PR #141](https://github.com/sendgrid/java-http-client/pull/141): add GH action to update dependencies. Thanks to [@JenniferMah](https://github.com/JenniferMah)!
+
+
 [2022-02-09] Version 4.4.0
 --------------------------
 **Library - Chore**
