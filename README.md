@@ -18,6 +18,7 @@ If you are looking for the SendGrid API client library, please see [this repo](h
 * [Usage](./USAGE.md)
 * [How to Contribute](#contribute)
 * [About](#about)
+* [Support](#support)
 * [License](#license)
 
 <a name="announcements"></a>
@@ -129,7 +130,10 @@ Quick links:
 
 java-http-client is maintained and funded by Twilio SendGrid, Inc. The names and logos for java-http-client are trademarks of Twilio SendGrid, Inc.
 
-If you need help installing or using the library, please check the [Twilio SendGrid Support Help Center](https://support.sendgrid.com).
+<a name="support"></a>
+# Support
+
+If you need help using SendGrid, please check the [Twilio SendGrid Support Help Center](https://support.sendgrid.com).
 
 If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
 
