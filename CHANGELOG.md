@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+[2022-05-18] Version 4.5.1
+--------------------------
+**Library - Docs**
+- [PR #144](https://github.com/sendgrid/java-http-client/pull/144): Update to align with SendGrid Support. Thanks to [@garethpaul](https://github.com/garethpaul)!
+
+**Library - Fix**
+- [PR #143](https://github.com/sendgrid/java-http-client/pull/143): override default gh token. Thanks to [@beebzz](https://github.com/beebzz)!
+
+
 [2022-03-09] Version 4.5.0
 --------------------------
 **Library - Chore**
