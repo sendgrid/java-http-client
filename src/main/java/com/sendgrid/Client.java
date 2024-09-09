@@ -6,45 +6,28 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Arrays;
-import java.util.List;
 
-import org.apache.http.Header;
-import org.apache.http.HttpMessage;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPatch;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.hc.core5.http.ClassicHttpResponse;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HttpException;
+import org.apache.hc.core5.http.HttpMessage;
+import org.apache.hc.core5.http.io.HttpClientResponseHandler;
+import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.apache.hc.core5.http.message.BasicClassicHttpRequest;
+import org.apache.hc.core5.net.URIBuilder;
 
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.classic.methods.HttpPatch;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.classic.methods.HttpPut;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 
-/**
- * Hack to get DELETE to accept a request body.
- */
-class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
-	public static final String METHOD_NAME = "DELETE";
-
-	@Override
-	public String getMethod() {
-		return METHOD_NAME;
-	}
-
-	public HttpDeleteWithBody(final String uri) {
-		super();
-		setURI(URI.create(uri));
-	}
-}
+import com.sun.jndi.toolkit.url.Uri;
 
 
 /**
@@ -52,9 +35,8 @@ class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
  */
 public class Client implements Closeable {
 
-	private CloseableHttpClient httpClient;
-	private Boolean test;
-	private boolean createdHttpClient;
+	private final CloseableHttpClient httpClient;
+	private final Boolean test;
 
 
 	/**
@@ -63,7 +45,6 @@ public class Client implements Closeable {
 	public Client() {
 		this.httpClient = HttpClients.createDefault();
 		this.test = false;
-		this.createdHttpClient = true;
 	}
 
 
@@ -101,7 +82,6 @@ public class Client implements Closeable {
 	public Client(CloseableHttpClient httpClient, Boolean test) {
 		this.httpClient = httpClient;
 		this.test = test;
-		this.createdHttpClient = true;
 	}
 
 
@@ -119,9 +99,8 @@ public class Client implements Closeable {
 	 */
 	public URI buildUri(String baseUri, String endpoint, Map<String, String> queryParams) throws URISyntaxException {
 		URIBuilder builder = new URIBuilder();
-		URI uri = null;
 
-		if (this.test == true) {
+		if (this.test) {
 			builder.setScheme("http");
 		} else {
 			builder.setScheme("https");
@@ -136,8 +115,8 @@ public class Client implements Closeable {
 			for (Map.Entry<String, String> entry : queryParams.entrySet()) {
 				String value = entry.getValue();
 
-				if (value.indexOf(multiValueDelimiter) != -1) {
-					List<String> values = Arrays.asList(value.split(multiValueDelimiter));
+				if (value.contains(multiValueDelimiter)) {
+					String[] values = value.split(multiValueDelimiter);
 					for (String val : values) {
 						builder.addParameter(entry.getKey(), val);
 					}
@@ -146,14 +125,7 @@ public class Client implements Closeable {
 				}
 			}
 		}
-
-		try {
-			uri = builder.build();
-		} catch (URISyntaxException ex) {
-			throw ex;
-		}
-
-		return uri;
+		return builder.build();
 	}
 
 
@@ -166,14 +138,14 @@ public class Client implements Closeable {
 	 *            in case of a network error
 	 * @return the response object
 	 */
-	public Response getResponse(CloseableHttpResponse response) throws IOException {
-		ResponseHandler<String> handler = new SendGridResponseHandler();
+	public Response getResponse(ClassicHttpResponse response) throws IOException, HttpException{
+		HttpClientResponseHandler<String> handler = new SendGridResponseHandler();
 		String responseBody = handler.handleResponse(response);
 
-		int statusCode = response.getStatusLine().getStatusCode();
+		int statusCode = response.getCode();
 
-		Header[] headers = response.getAllHeaders();
-		Map<String, String> responseHeaders = new HashMap<String, String>();
+		Header[] headers = response.getHeaders();
+		Map<String, String> responseHeaders = new HashMap<>();
 		for (Header h : headers) {
 			responseHeaders.put(h.getName(), h.getValue());
 		}
@@ -185,8 +157,8 @@ public class Client implements Closeable {
 	/**
 	 * Make a GET request and provide the status code, response body and
 	 * response headers.
-	 * 
-	 * @param request 
+	 *
+	 * @param request
 	 *            the request object
 	 * @throws URISyntaxException
 	 *            in case of a URI syntax error
@@ -195,15 +167,8 @@ public class Client implements Closeable {
 	 * @return the response object
 	 */
 	public Response get(Request request) throws URISyntaxException, IOException {
-		URI uri = null;
-		HttpGet httpGet = null;
-
-		try {
-			uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
-			httpGet = new HttpGet(uri.toString());
-		} catch (URISyntaxException ex) {
-			throw ex;
-		}
+		URI uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
+		HttpGet httpGet = new HttpGet(uri.toString());
 
 		if (request.getHeaders() != null) {
 			for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
@@ -218,7 +183,7 @@ public class Client implements Closeable {
 	 * Make a POST request and provide the status code, response body and
 	 * response headers.
 	 *
-	 * @param request 
+	 * @param request
 	 *            the request object
 	 * @throws URISyntaxException
 	 *            in case of a URI syntax error
@@ -227,15 +192,8 @@ public class Client implements Closeable {
 	 * @return the response object
 	 */
 	public Response post(Request request) throws URISyntaxException, IOException {
-		URI uri = null;
-		HttpPost httpPost = null;
-
-		try {
-			uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
-			httpPost = new HttpPost(uri.toString());
-		} catch (URISyntaxException ex) {
-			throw ex;
-		}
+		URI uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
+		HttpPost httpPost = new HttpPost(uri.toString());
 
 		if (request.getHeaders() != null) {
 			for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
@@ -243,7 +201,7 @@ public class Client implements Closeable {
 			}
 		}
 
-		httpPost.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
+		httpPost.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		writeContentTypeIfNeeded(request, httpPost);
 
 		return executeApiCall(httpPost);
@@ -254,7 +212,7 @@ public class Client implements Closeable {
 	 * Make a PATCH request and provide the status code, response body and
 	 * response headers.
 	 *
-	 * @param request 
+	 * @param request
 	 *            the request object
 	 * @throws URISyntaxException
 	 *            in case of a URI syntax error
@@ -263,15 +221,8 @@ public class Client implements Closeable {
 	 * @return the response object
 	 */
 	public Response patch(Request request) throws URISyntaxException, IOException {
-		URI uri = null;
-		HttpPatch httpPatch = null;
-
-		try {
-			uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
-			httpPatch = new HttpPatch(uri.toString());
-		} catch (URISyntaxException ex) {
-			throw ex;
-		}
+		URI uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
+		HttpPatch httpPatch = new HttpPatch(uri.toString());
 
 		if (request.getHeaders() != null) {
 			for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
@@ -279,7 +230,7 @@ public class Client implements Closeable {
 			}
 		}
 
-		httpPatch.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
+		httpPatch.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		writeContentTypeIfNeeded(request, httpPatch);
 
 		return executeApiCall(httpPatch);
@@ -290,7 +241,7 @@ public class Client implements Closeable {
 	 * Make a PUT request and provide the status code, response body and
 	 * response headers.
 	 *
-	 * @param request 
+	 * @param request
 	 *            the request object
 	 * @throws URISyntaxException
 	 *            in case of a URI syntax error
@@ -299,15 +250,8 @@ public class Client implements Closeable {
 	 * @return the response object
 	 */
 	public Response put(Request request) throws URISyntaxException, IOException {
-		URI uri = null;
-		HttpPut httpPut = null;
-
-		try {
-			uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
-			httpPut = new HttpPut(uri.toString());
-		} catch (URISyntaxException ex) {
-			throw ex;
-		}
+		URI uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
+		HttpPut httpPut = new HttpPut(uri.toString());
 
 		if (request.getHeaders() != null) {
 			for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
@@ -315,7 +259,7 @@ public class Client implements Closeable {
 			}
 		}
 
-		httpPut.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
+		httpPut.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		writeContentTypeIfNeeded(request, httpPut);
 
 		return executeApiCall(httpPut);
@@ -325,7 +269,7 @@ public class Client implements Closeable {
 	/**
 	 * Make a DELETE request and provide the status code and response headers.
 	 *
-	 * @param request 
+	 * @param request
 	 *            the request object
 	 * @throws URISyntaxException
 	 *            in case of a URI syntax error
@@ -334,15 +278,8 @@ public class Client implements Closeable {
 	 * @return the response object
 	 */
 	public Response delete(Request request) throws URISyntaxException, IOException {
-		URI uri = null;
-		HttpDeleteWithBody httpDelete = null;
-
-		try {
-			uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
-			httpDelete = new HttpDeleteWithBody(uri.toString());
-		} catch (URISyntaxException ex) {
-			throw ex;
-		}
+		URI uri = buildUri(request.getBaseUri(), request.getEndpoint(), request.getQueryParams());
+		BasicClassicHttpRequest httpDelete = new BasicClassicHttpRequest("DELETE", uri.toString());
 
 		if (request.getHeaders() != null) {
 			for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
@@ -350,7 +287,7 @@ public class Client implements Closeable {
 			}
 		}
 
-		httpDelete.setEntity(new StringEntity(request.getBody(), Charset.forName("UTF-8")));
+		httpDelete.setEntity(new StringEntity(request.getBody(), StandardCharsets.UTF_8));
 		writeContentTypeIfNeeded(request, httpDelete);
 
 		return executeApiCall(httpDelete);
@@ -366,21 +303,16 @@ public class Client implements Closeable {
 	/**
 	 * Makes a call to the client API.
 	 *
-	 * @param httpPost 
+	 * @param httpPost
 	 *            the request method object
 	 * @throws IOException
 	 *            in case of a network error
 	 * @return the response object
 	 */
-	private Response executeApiCall(HttpRequestBase httpPost) throws IOException {
+	private Response executeApiCall(BasicClassicHttpRequest httpPost) throws IOException {
 		try {
-			CloseableHttpResponse serverResponse = httpClient.execute(httpPost);
-			try {
-				return getResponse(serverResponse);
-			} finally {
-				serverResponse.close();
-			}
-		} catch(ClientProtocolException e) {
+			return getResponse(httpClient.execute(httpPost, response -> response));
+		} catch(ClientProtocolException | HttpException e) {
 			throw new IOException(e.getMessage());
 		}
 	}
@@ -389,7 +321,7 @@ public class Client implements Closeable {
 	/**
 	 * A thin wrapper around the HTTP methods.
 	 *
-	 * @param request 
+	 * @param request
 	 *            the request object
 	 * @throws IOException
 	 *            in case of a network error
@@ -414,9 +346,7 @@ public class Client implements Closeable {
 			default:
 				throw new IOException("We only support GET, PUT, PATCH, POST and DELETE.");
 			}
-		} catch (IOException ex) {
-			throw ex;
-		} catch (URISyntaxException ex) {
+		}catch (URISyntaxException ex) {
 			StringWriter errors = new StringWriter();
 			ex.printStackTrace(new PrintWriter(errors));
 			throw new IOException(errors.toString());
@@ -429,27 +359,10 @@ public class Client implements Closeable {
 	 *
 	 * @throws IOException
 	 *            in case of a network error
-	 */	
+	 */
 	@Override
 	public void close() throws IOException {
-      	this.httpClient.close();
+		this.httpClient.close();
 	}
 
-
-	/**
-	 * Closes and finalizes the http client.
-	 *
-	 * @throws Throwable
-	 *            in case of an error
-	 */		
-	@Override
-	public void finalize() throws Throwable {
-		try {
-			close();
-		} catch(IOException e) {
-			throw new Throwable(e.getMessage());
-		} finally {
-			super.finalize();
-		}
-	}
 }
