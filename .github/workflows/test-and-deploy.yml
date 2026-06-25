@@ -13,16 +13,16 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-large
     timeout-minutes: 20
     strategy:
       matrix:
         java: [ 8, 11, 17 ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5  # v2
 
       - name: Set up Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@91d3aa4956ec4a53e477c4907347b5e3481be8c9  # v2
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
@@ -36,12 +36,12 @@ jobs:
     name: Deploy
     if: success() && github.ref_type == 'tag'
     needs: [ test ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-large
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5  # v2
 
       - name: Set up Sonatype Maven
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@91d3aa4956ec4a53e477c4907347b5e3481be8c9  # v2
         with:
           java-version: 8
           distribution: temurin
@@ -55,7 +55,7 @@ jobs:
         run: make install
 
       - name: Create GitHub Release
-        uses: sendgrid/dx-automator/actions/release@main
+        uses: sendgrid/dx-automator/actions/release@08b601b726671445abc798ed59881766ec8fefc6  # main
         with:
           assets: java-http-client.jar
           footer: '**[Maven](https://mvnrepository.com/artifact/com.sendgrid/java-http-client/${version})**'
@@ -70,7 +70,7 @@ jobs:
         run: mvn clean deploy -DskipTests=true -B -U -Prelease
 
       - name: Submit metric to Datadog
-        uses: sendgrid/dx-automator/actions/datadog-release-metric@main
+        uses: sendgrid/dx-automator/actions/datadog-release-metric@08b601b726671445abc798ed59881766ec8fefc6  # main
         env:
           DD_API_KEY: ${{ secrets.DATADOG_API_KEY }}
 
@@ -78,9 +78,9 @@ jobs:
     name: Slack notify on failure
     if: failure() && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref_type == 'tag')
     needs: [ test, deploy ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-large
     steps:
-      - uses: rtCamp/action-slack-notify@v2
+      - uses: rtCamp/action-slack-notify@33ca3be66c6f378fe1610fd1d5258632dbed5e58  # v2
         env:
           SLACK_COLOR: failure
           SLACK_ICON_EMOJI: ':github:'
